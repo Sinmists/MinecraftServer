@@ -4,8 +4,8 @@
 
 目前计划长期运行的Minecraft服务器建设中，插件配置需要频繁翻阅不同文档，且每个插件常用的只有部分文档内容而已，因此按照个人需求整合并修改了部分配置内容，可参考但不建议全盘搬运，因此造成的后果概不负责，请以官方文档为准。
 
-正弦默示录
-2019.7.9~
+正弦默示录  
+2019.7.9
 
 ---
 
@@ -27,11 +27,11 @@
 2. 把 LuckPerms 的 jar 文件放入Mod 或插件所在路径，路径通常是 `/plugins/` ，或者 `/mods/`
 3. 完全关闭服务器，然后再打开，生成默认配置，配置文件在 `/plugins/LuckPerms/config.yml` 或 `/config/luckperms/luckperms.conf`。
 
-####环境需求
+#### 环境需求
 
 Java 8
 
-####切换存储类型
+#### 切换存储类型
 
 **请记住如果你想改变存储类型的话，你的数据不会自动转移到新的存储库中。**
 LuckPerms 插件所使用的默认数据存储类型是 H2 数据库。
@@ -59,9 +59,9 @@ storage-method: h2
 storage-method: sqlite
 ```
 
-###命令
+### 命令
 
-####初始化
+#### 初始化
 
 **给予修改权限的全部权限**
 
@@ -84,18 +84,18 @@ storage-method: sqlite
 
  `/luckperms user Sinmists parent add owner` 
 
-####概览
+#### 概览
 
 **= 参数键值：**
 <必需> - 运行指令时你 **必需** 指定这个参数
 [可选] - 如果没有指定将会使用默认
 如果你想在参数中添加空格，必须像这样 " " 使用引号把参数包起来
 
-####常用命令解析
+#### 常用命令解析
 
 >此处只列出常用命令，全部命令请查看官网文档
 
-#####基础
+##### 基础
 ```
 /lp
 权限: n/a
@@ -155,7 +155,7 @@ storage-method: sqlite
 显示当前所有的路线。
 ```
 
-#####用户 (/lp user <user> ...)
+##### 用户 (/lp user <user> ...)
 ```
 /lp user <user> info
 权限: luckperms.user.info
@@ -194,7 +194,7 @@ storage-method: sqlite
 清除玩家的权限，继承组和元数据。
 ```
 
-#####组 (/lp group <group> ...)
+##### 组 (/lp group <group> ...)
 ```
 /lp group <group> info
 权限: luckperms.group.info
@@ -247,7 +247,7 @@ storage-method: sqlite
 创建一个组的不同名称的拷贝。
 ```
 
-#####权限 (/lp user <user> permission ... | /lp group <group> permission ...)
+##### 权限 (/lp user <user> permission ... | /lp group <group> permission ...)
 ```
 info
 权限: luckperms.user.permission.info 或 luckperms.group.permission.info
@@ -290,7 +290,7 @@ checkinherits <node> [context...]
 检查一个组或者玩家继承了特定的权限，如果是，从哪里继承的。
 ```
 
-#####继承 (/lp user <user> parent ... | /lp group <group> parent ...)
+##### 继承 (/lp user <user> parent ... | /lp group <group> parent ...)
 ```
 info
 权限: luckperms.user.parent.info or luckperms.group.parent.info
