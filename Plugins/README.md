@@ -1,4 +1,4 @@
-#Minecraft Server Plugins
+# Minecraft Server Plugins
 
 **这是什么文档？**
 
@@ -8,18 +8,20 @@
 2019.7.9~
 
 ---
+
 **目录**
  [TOC]
+
 ---
 
-##[权限管理]LuckPerms
+## [权限管理]LuckPerms
 
 [Github](https://github.com/PluginsCDTribe/LuckPerms)
 [中文Wiki](https://pluginscdtribe.github.io/wiki/luckperms/)
 
-###安装
+### 安装
 
-####初始化
+#### 初始化
 
 1. 根据平台下载`LuckPerms-???-x.x.x.jar` 文件。[最新版本](https://luckperms.github.io/)
 2. 把 LuckPerms 的 jar 文件放入Mod 或插件所在路径，路径通常是 `/plugins/` ，或者 `/mods/`
