@@ -10,13 +10,13 @@
 ---
 
 **目录**
- [TOC]
+[TOC]
 
 ---
 
 ## [权限管理]LuckPerms
 
-[Github](https://github.com/PluginsCDTribe/LuckPerms)
+[Github](https://github.com/PluginsCDTribe/LuckPerms) | 
 [中文Wiki](https://pluginscdtribe.github.io/wiki/luckperms/)
 
 ### 安装
