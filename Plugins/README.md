@@ -348,14 +348,17 @@ cleartrack <track> [context...]
 
 ## [基础指令]Nucleus
 
-[Github](https://ore.spongepowered.org/Nucleus/Nucleus) | 
+[官网](https://nucleuspowered.org/index.html) | 
 [中文文档](http://www.mcbbs.net/thread-787354-1-1.html)
 
 ### 安装
 
 下载[最新版本]()放入Mod文件夹即可
 
-### 命令
+### 常用命令解析
+[这里](https://nucleuspowered.org/docs/commands2.html)检查命令详细用法
+
+### 所有命令
 
 #### admin模块
 模块|命令|基础权限|命令描述
