@@ -344,3 +344,418 @@ cleartrack <track> [context...]
 <track> - 移除的路线 * [context...] - 用于过滤的上下文
 移除指定路线的玩家/组的所有继承组。
 ```
+---
+
+## [基础指令]Nucleus
+
+[Github](https://ore.spongepowered.org/Nucleus/Nucleus) | 
+[中文文档](http://www.mcbbs.net/thread-787354-1-1.html)
+
+### 安装
+
+下载[最新版本]()放入Mod文件夹即可
+
+### 命令
+
+#### admin模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+admin|/blockzap|nucleus.blockzap.base|把目标方块设置成空气。
+admin|/broadcast|nucleus.broadcast.base|向整个服务器广播消息。
+admin|/exp|nucleus.exp.base|显示特定玩家所拥有的经验。
+admin|/exp give|nucleus.exp.give.base|向特定玩家给予一定经验。
+admin|/exp set|nucleus.exp.set.base|设置特定玩家所调用的经验。
+admin|/exp take|nucleus.exp.take.base|把经验从特定玩家身上移除。
+admin|/gamemode|nucleus.gamemode.base|设置一个玩家的游戏模式。
+admin|/kill|nucleus.kill.base|杀死特定的玩家和/或实体。
+admin|/killentity|nucleus.killentity.base|杀死特定的实体。
+admin|/plainbroadcast|nucleus.plainbroadcast.base|允许在广播消息时不带前缀或后缀。
+admin|/stop|nucleus.stop.base|停止服务器。
+admin|/sudo|nucleus.sudo.base|强制玩家执行一个命令。
+admin|/tellplain|nucleus.tellplain.base|允许在向玩家发送消息时不带前缀或后缀。
+
+#### afk模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+afk|/afk|nucleus.afk.base|切换玩家的AFK状态。
+afk|/afkrefresh|nucleus.afkrefresh.base|停用所有AFK缓存。
+
+#### back模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+back|/back|nucleus.back.base|允许玩家回到上一次死亡或传送点的位置。
+
+#### ban模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+ban|/ban|nucleus.ban.base|封禁玩家。
+ban|/checkban|nucleus.checkban.base|查看玩家是否已被封禁。
+ban|/tempban|nucleus.tempban.base|临时封禁一个玩家。
+ban|/unban|nucleus.unban.base|为玩家解除封禁。
+
+#### chat模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+chat|/me|nucleus.me.base|执行下一条聊天信息，具体执行方式由服务端设置。
+
+#### command-spy模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+command-spy|/commandspy|nucleus.commandspy.base|启用或禁用对他人输入指令内容的窥视。
+
+#### core模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+core|/nucleus|nucleus.nucleus.base|显示Nucleus的版本和模块信息。
+core|/nucleus clearcache|nucleus.nucleus.clearcache.base|清除在Nucleus中缓存的玩家信息，并强迫Nucleus在玩家登陆时从文件读取。
+core|/nucleus debug|nucleus.nucleus.debug.base|用于定义服务器问题的实用工具。
+core|/nucleus debug getuuids|nucleus.nucleus.debug.getuuids.base|获取和特定玩家名关联的所有UUID。
+core|/nucleus debug refreshuniquevisitors|nucleus.nucleus.debug.refreshuniquevisitors.base|在{{uniquecount}}不同步时刷新。
+core|/nucleus debug setsession|nucleus.nucleus.debug.setsession.base|启用或禁用调试模式，如果配置文件中有所设置，该配置会将其覆盖。
+core|/nucleus getuser|nucleus.getuser.base|获取或刷新玩家对应的记录。
+core|/nucleus info|nucleus.nucleus.info.base|在服务端根目录创建一个包含有服务端本身和Nucleus的信息的文件。
+core|/nucleus itemalias|nucleus.nucleus.itemalias.base|管理物品别名。。
+core|/nucleus itemalias clear|nucleus.nucleus.itemalias.clear.base|移除一个物品的所有别名。
+core|/nucleus itemalias remove|nucleus.nucleus.itemalias.remove.base|移除一个物品的一个别名。
+core|/nucleus itemalias set|nucleus.nucleus.itemalias.set.base|设置一个物品的别名。
+core|/nucleus printperms|nucleus.nucleus.printperms.base|输出用于Nucleus的所有权限的列表。
+core|/nucleus rebuildusercache|nucleus.nucleus.rebuildusercache.base|重建Nucleus的玩家缓存。
+core|/nucleus reload|nucleus.nucleus.reload.base|重新加载Nucleus的配置文件。
+core|/nucleus resetuser|nucleus.nucleus.resetuser.base|删除所有Nucleus和部分Minecraft中的玩家数据。
+core|/nucleus save|nucleus.nucleus.save.base|保存所有文件。
+core|/nucleus setupperms|nucleus.nucleus.setupperms.base|允许玩家向特定组添加针对USER、MOD、ADMIN规则的权限。
+core|/nucleus update-messages|nucleus.nucleus.update-messages.base|找到所有语言文件中可能未包含所有占位符的文本，并用默认的翻译替换掉。
+
+#### environment模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+environment|/lockweather|nucleus.lockweather.base|锁定特定世界的天气。
+environment|/time|nucleus.time.base|获取特定世界的时间。
+environment|/time set|nucleus.time.set.base|设置特定世界的时间。
+environment|/weather|nucleus.weather.base|设置特定世界的天气。
+
+#### fly模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+fly|/fly|nucleus.fly.base|设置特定玩家的飞行状态。
+
+#### freeze-subject模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+freeze-subject|/freezeplayer|nucleus.freezeplayer.base|把一个玩家固定在某处。
+
+#### fun模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+fun|/hat|nucleus.hat.base|把一个玩家手上的物品当成头盔佩戴在头上。
+fun|/ignite|nucleus.ignite.base|让特定玩家着火。
+fun|/kittycannon|nucleus.kittycannon.base|从一个人身上发射豹猫大炮。
+fun|/lightning|nucleus.lightning.base|在特定玩家或特定位置处打雷。
+
+#### geo-ip模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+geo-ip|/geoip|nucleus.geoip.base|获取玩家的保持的连接所处的国家或地区。
+geo-ip|/geoip update|nucleus.geoip.update.base|更新地理位置数据库，强烈建议两次更新的时间间隔不小于一个月。
+
+#### home模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+home|/deletehome|nucleus.home.base|删除家的位置。
+home|/deletehomeother|nucleus.home.deleteother.base|删除另一个玩家的家的位置。
+home|/home|nucleus.home.base|传送到家的位置。
+home|/homeother|nucleus.home.other.base|传送到另一个玩家家的位置。
+home|/homeset|nucleus.home.set.base|设置特定名称的家的位置。
+home|/listhomes|nucleus.home.list.base|输出所有家的一个列表。
+
+#### ignore模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+ignore|/ignore|nucleus.ignore.base|切换是否忽视所有聊天信息的状态。
+
+#### info模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+info|/info|nucleus.info.base|获取服务器的信息。
+info|/motd|nucleus.motd.base|允许查看位于motd.txt中的MOTD的信息。
+
+#### inventory模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+inventory|/clear|nucleus.clear.base|把一个玩家的背包清空。
+inventory|/enderchest|nucleus.enderchest.base|允许查看其他人的末影箱。
+inventory|/invsee|nucleus.invsee.base|允许查看其他人的背包。
+
+#### item模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+item|/enchant|nucleus.enchant.base|允许附魔物品。
+item|/itemname|nucleus.itemname.base|和物品名称有关的相关操作。
+item|/itemname clear|nucleus.itemname.clear.base|清除玩家手中的物品的自定义物品名称。
+item|/itemname set|nucleus.itemname.set.base|设置玩家手中的物品的玩家可见名称。
+item|/lore|nucleus.lore.base|和Lore有关的相关操作。
+item|/lore add|nucleus.lore.set.base|为手中的物品的Lore添加一行新的。
+item|/lore clear|nucleus.lore.set.base|清除手中物品的Lore的所有行。
+item|/lore delete|nucleus.lore.set.base|删除手中物品的Lore的特定一行。
+item|/lore edit|nucleus.lore.set.base|修改手中物品的Lore的特定一行。
+item|/lore insert|nucleus.lore.set.base|在手中物品的Lore的特定一行处插入一行新的。
+item|/lore set|nucleus.lore.set.base|设置手中物品的Lore，原有的Lore将被替换。
+item|/more|nucleus.more.base|把手中的物品的数量加到最大。
+item|/repair|nucleus.repair.base|修复手中的物品。
+item|/showitemattributes|nucleus.showitemattributes.base|显示或隐藏物品提示框中的属性。
+item|/skull|nucleus.skull.base|在你的背包中添加特定玩家的头颅（如果未指定玩家，添加你自己的）。
+
+#### jail模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+jail|/checkjail|nucleus.jail.checkjail.base|检查一个玩家是否已入狱。
+jail|/checkjailed|nucleus.checkjailed.base|检查狱中玩家的缓存信息，可指定特定监狱。
+jail|/jail|nucleus.jail.base|设置玩家是否被关起来。
+jail|/jails|nucleus.jail.list.base|显示所有的监狱。
+jail|/jails delete|nucleus.jail.delete.base|删除一个监狱。
+jail|/jails set|nucleus.jail.set.base|创建一个监狱。
+jail|/jails tp|nucleus.jail.list.base|传送到一个监狱。
+
+#### jump模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+jump|/jump|nucleus.jump.base|小跳到玩家所注视的方块上。
+jump|/thru|nucleus.thru.base|穿墙传送。
+jump|/top|nucleus.top.base|把一个特定玩家传送到地面上。
+jump|/unstuck|nucleus.unstuck.base|把一个玩家推动一方块的距离以解救玩家，如果可以做到的话。
+
+#### kick模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+kick|/kick|nucleus.kick.base|踢出一个玩家。
+kick|/kickall|nucleus.kickall.base|踢出所有玩家，也可以顺道把白名单模式打开。
+
+#### kit模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+kit|/firstjoinkit|nucleus.firstjoinkit.base|把礼包变成第一次加入的玩家自动送出的礼包。
+kit|/kit|nucleus.kit.base|送出礼包。
+kit|/kit add|nucleus.kit.add.base|新建礼包，并把当前背包里的物品作为新建礼包的内容。
+kit|/kit autoredeem|nucleus.kit.autoredeem.base|设置或取消设置登录时是否自动送出礼包。
+kit|/kit command|nucleus.kit.command.base|输出所有和礼包有关的命令列表。
+kit|/kit command add|nucleus.kit.command.add.base|为特定礼包添加一条命令。
+kit|/kit command clear|nucleus.kit.command.remove.base|把特定礼包的所有可用命令清空。
+kit|/kit command edit|nucleus.kit.command.edit.base|打开一个游戏内GUI，其中的所有礼包以书的形式呈现。
+kit|/kit command remove|nucleus.kit.command.remove.base|移除特定礼包里的一条命令。
+kit|/kit cost|nucleus.kit.cost.base|设置特定礼包的花费。
+kit|/kit create|nucleus.kit.create.base|打开一个箱子GUI，并通常这种交互方式设置新建的礼包内容。
+kit|/kit edit|nucleus.kit.edit.base|打开一个可用于编辑礼包内容的界面。
+kit|/kit give|nucleus.kit.give.base|为特定玩家送出礼包。
+kit|/kit hidden|nucleus.kit.hidden.base|设置特定礼包是否显示在所有可用的礼包列表里。
+kit|/kit info|nucleus.kit.info.base|获取一个礼包的相关信息。
+kit|/kit list|nucleus.kit.list.base|列出所有可用的礼包。
+kit|/kit onetime|nucleus.kit.onetime.base|设置或取消设置一个礼包是否只能领取一次。
+kit|/kit permissionbypass|nucleus.kit.permissionbypass.base|如果配置文件设置允许，设置领取礼包是否需要额外的权限。
+kit|/kit remove|nucleus.kit.remove.base|删除一个礼包。
+kit|/kit resetusage|nucleus.kit.resetusage.base|重置玩家领取礼包的状态，也就是说可以立刻再领取礼包。
+kit|/kit set|nucleus.kit.set.base|把当前背包里的物品设置成礼包里的。
+kit|/kit setcooldown|nucleus.kit.setcooldown.base|设置礼包的冷却时间。
+kit|/kit setfirstjoin|nucleus.kit.setfirstjoin.base|设置玩家第一次加入服务器时会送出的礼包。
+kit|/kit toggleredeemmessage|nucleus.kit.toggleredeemmessage.base|设置送出礼包时是否提醒对方。
+kit|/kit view|nucleus.kit.view.base|查看礼包的内容。
+
+#### mail模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+mail|/mail|nucleus.mail.base|查看向你发送的邮件。
+mail|/mail clear|nucleus.mail.base|清空收件箱里的所有邮件。
+mail|/mail other|nucleus.mail.other.base|阅读他们邮件。
+mail|/mail send|nucleus.mail.send.base|向特定玩家发邮件。
+
+#### message模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+message|/helpop|nucleus.helpop.base|向所有管理员发邮件。
+message|/message|nucleus.message.base|向特定玩家发邮件，或者向服务端控制台发邮件，使用“-”代表服务端控制台。
+message|/msgtoggle|nucleus.msgtoggle.base|阻止其他玩家向你发私有消息。
+message|/reply|nucleus.message.base|向之前向你发私有消息的玩家回消息。
+message|/socialspy|nucleus.socialspy.base|查阅所有其他玩家发送的私有消息。
+
+#### misc模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+misc|/blockinfo|nucleus.blockinfo.base|获取你注视的方块的所有相关信息。
+misc|/entityinfo|nucleus.entityinfo.base|获取你注视的实体的所有相关信息。
+misc|/feed|nucleus.feed.base|填满一个玩家的饥饿值。
+misc|/god|nucleus.god.base|设置一个玩家是否免疫所有伤害。
+misc|/heal|nucleus.heal.base|把一个玩家的血量填满。
+misc|/iteminfo|nucleus.iteminfo.base|获取你手中的物品的信息。
+misc|/ping|nucleus.ping.base|获取目标玩家的延迟。
+misc|/serverstat|nucleus.serverstat.base|获取服务器的运行时信息。
+misc|/servertime|nucleus.servertime.base|获取服务器的当前时间。
+misc|/speed|nucleus.speed.base|设置玩家的行走或飞行速度，1代表默认速度。
+misc|/suicide|nucleus.suicide.base|自杀，并显示死亡画面。
+
+#### mob模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+mob|/spawnmob|nucleus.spawnmob.base|在特定玩家的位置生成一个怪物。
+
+#### mute模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+mute|/checkmute|nucleus.checkmute.base|检查特定玩家是否被禁言。
+mute|/checkmuted|nucleus.checkmuted.base|检查玩家的禁言信息。
+mute|/globalmute|nucleus.globalmute.base|开启全员禁言，只有拥有“nucleus.globalmute.voice.auto”权限的人可以接着说话。
+mute|/mute|nucleus.mute.base|堵上特定玩家的嘴。
+mute|/voice|nucleus.globalmute.voice.base|在全员禁言的时候允许玩家说话。
+
+#### nameban模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+nameban|/nameban|nucleus.nameban.base|阻止一个IGN而不是一个玩家进入服务器。
+nameban|/nameunban|nucleus.nameban.unban.base|重新允许一个IGN而不是一个玩家进入服务器。
+
+#### nickname模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+nickname|/delnick|nucleus.nick.base|移除你当前的昵称。
+nickname|/nick|nucleus.nick.base|设置你的昵称（显示名称）。
+nickname|/realname|nucleus.realname.base|根据玩家的昵称获取其真实id。
+
+#### note模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+note|/checknotes|nucleus.checknotes.base|允许检查玩家的标记。
+note|/clearnotes|nucleus.clearnotes.base|允许清除玩家的标记。
+note|/note|nucleus.note.base|允许为玩家添加一个标记。
+note|/removenote|nucleus.removenote.base|允许移除一个和特定玩家相关联和标记。
+
+#### playerinfo模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+playerinfo|/getfromip|nucleus.getfromip.base|获取所有玩家上次上线时使用的IP。
+playerinfo|/getpos|nucleus.getpos.base|获取一个命令执行者或玩家的位置。
+playerinfo|/list|nucleus.list.base|列出所有在线的玩家。
+playerinfo|/seen|nucleus.seen.base|获取特定玩家的相关信息。
+
+#### powertool模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+powertool|/powertool|nucleus.powertool.base|把当前手上的物品使用特定的命令绑定。
+powertool|/powertool delete|nucleus.powertool.base|移除当前手上的物品的所有命令绑定。
+powertool|/powertool list|nucleus.powertool.base|列出所有当前玩家已绑定的物品。
+powertool|/powertool toggle|nucleus.powertool.base|设置物品的命令绑定是否启用。
+
+#### rtp模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+rtp|/rtp|nucleus.rtp.base|允许玩家向一个随机的方向传送，只要目标位置在世界边界内。
+
+#### rules模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+rules|/rules|nucleus.rules.base|查看服务器的规则。
+
+#### server-list模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+server-list|/serverlist|nucleus.serverlist.base|方便修改Server List的相关操作。
+server-list|/serverlist message|nucleus.serverlist.message.base|允许在定时的基础上临时修改Server List的MOTD。
+
+#### server-shop模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+server-shop|/itembuy|nucleus.itembuy.base|允许玩家以特定价格购买服务器设定的物品。
+server-shop|/itemsell|nucleus.itemsell.base|允许玩家以服务器设定的价格卖出手上物品。
+server-shop|/itemsellall|nucleus.itemsellall.base|允许玩家以服务器设定的价格卖出背包里所有同类型的物品。
+server-shop|/setworth|nucleus.setworth.base|允许玩家设置物品买卖的价格。
+server-shop|/worth|nucleus.worth.base|允许玩家查看服务器中等待买卖的物品的价格。
+
+#### spawn模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+spawn|/firstspawn|nucleus.firstspawn.base|如果已设置，传送到新玩家的出生点。
+spawn|/setfirstspawn|nucleus.firstspawn.set.base|设置新玩家的出生点。
+spawn|/setfirstspawn del|nucleus.firstspawn.remove.base|移除新玩家的出生点。
+spawn|/setspawn|nucleus.setspawn.base|设置当前世界的出生点。
+spawn|/spawn|nucleus.spawn.base|传送到当前世界的出生点。
+spawn|/spawn other|nucleus.spawn.other.base|把其他玩家传送到当前世界的出生点。
+
+#### staff-chat模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+staff-chat|/staffchat|nucleus.staffchat.base|允许在管理员聊天频道聊天。
+
+#### teleport模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+teleport|/teleport|nucleus.teleport.teleport.base|把一个玩家传送到另一个位置。
+teleport|/teleportnative|无|/minecraft:tp的别名。
+teleport|/tpa|nucleus.teleport.tpa.base|向其他玩家发送一个传送到对方那里的请求。
+teleport|/tpaall|nucleus.teleport.tpaall.base|向其他所有玩家发送一个传送到自己所在位置的请求。
+teleport|/tpaccept|nucleus.teleport.tpaccept.base|允许传送请求。
+teleport|/tpahere|nucleus.teleport.tpahere.base|向其他玩家发送一个传送到自己所在位置的请求。
+teleport|/tpall|nucleus.teleport.tpall.base|使其他所有玩家强制传送到自己所在位置。
+teleport|/tpdeny|nucleus.teleport.tpdeny.base|不允许传送请求。
+teleport|/tphere|nucleus.teleport.tphere.base|把一个玩家传送到自己所在位置。
+teleport|/tppos|nucleus.teleport.tppos.base|传送到特定位置。
+teleport|/tptoggle|nucleus.teleport.tptoggle.base|设置是否收到传送请求。
+
+#### vanish模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+vanish|/vanish|nucleus.vanish.base|设置在服务器中是否可见。
+
+#### warn模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+warn|/checkwarnings|nucleus.checkwarnings.base|允许检查特定玩家的警告。
+warn|/clearwarnings|nucleus.clearwarnings.base|允许清除特定玩家的警告。
+warn|/removewarning|nucleus.removewarning.base|允许移除一条针对特定玩家的警告。
+warn|/warn|nucleus.warn.base|允许为玩家添加警告。
+
+#### warp模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+warp|/warp|nucleus.warp.base|传送到特定的传送点。
+warp|/warp category|nucleus.warp.category.base|用于管理传送点种类的相关指令。
+warp|/warp category list|nucleus.warp.category.list.base|列出所有服务器上正在使用的传送点种类。
+warp|/warp category removedescription|nucleus.warp.category.description.base|移除一种种类的描述。
+warp|/warp category removedisplayname|nucleus.warp.category.displayname.base|移除一种种类的名称。
+warp|/warp category setdescription|nucleus.warp.category.description.base|设置一种种类的描述。
+warp|/warp category setdisplayname|nucleus.warp.category.displayname.base|设置一种种类的名称。
+warp|/warp cost|nucleus.warp.cost.base|设置传送到特定传送点的花费。
+warp|/warp delete|nucleus.warp.delete.base|移除特定传送点。
+warp|/warp list|nucleus.warp.list.base|列出所有服务器可用的传送点。
+warp|/warp set|nucleus.warp.set.base|设置特定传送点。
+warp|/warp setcategory|nucleus.warp.setcategory.base|设置在/warp list命令中出现的传送点种类。
+warp|/warp setdescription|nucleus.warp.setdescription.base|设置或使用“-r”移除传送点的描述。
+
+
+#### world模块
+模块|命令|基础权限|命令描述
+-|-|-|-
+world|/world|nucleus.world.base|所有和世界相关的命令的父命令。
+world|/world border|nucleus.world.border.base|所有和世界边界相关的命令的父命令。
+world|/world border cancelgen|nucleus.world.border.gen.base|取消所有世界边界设置。
+world|/world border gen|nucleus.world.border.gen.base|生成直到世界边界的所有区块。
+world|/world border reset|nucleus.world.border.set.base|重置世界边界至默认值。
+world|/world border set|nucleus.world.border.set.base|设置世界边界。
+world|/world create|nucleus.world.create.base|创建一个拥有特定名称和选项的世界。
+world|/world delete|nucleus.world.delete.base|从存储介质中把世界移除。
+world|/world disable|nucleus.world.disable.base|关闭一个未加载的世界，使其不再被加载。
+world|/world enable|nucleus.world.enable.base|启用一个世界，使其在需要的时候被加载。
+world|/world gamerule|nucleus.world.gamerule.base|查看一个世界的所有规则。
+world|/world gamerule set|nucleus.world.gamerule.set.base|设置特定世界的规则。
+world|/world generators|nucleus.world.create.base|查看创建世界所使用的生成器规则。
+world|/world info|nucleus.world.list.base|查看一个世界的所有相关信息。
+world|/world list|nucleus.world.list.base|列出所有可用的世界。
+world|/world load|nucleus.world.load.base|列出所有未被加载的世界。
+world|/world modifiers|nucleus.world.create.base|查看创建世界所使用的参数。
+world|/world presets|nucleus.world.create.base|查看创建世界所使用的预设。
+world|/world setdifficulty|nucleus.world.setdifficulty.base|设置一个世界的游戏难度。
+world|/world setgamemode|nucleus.world.setgamemode.base|设置一个世界的游戏模式。
+world|/world sethardcore|nucleus.world.sethardcore.base|设置一个世界是否启用极限模式。
+world|/world setkeepspawnloaded|nucleus.world.setkeepspawnloaded.base|设置一个世界是否持续加载出生点区块。
+world|/world setloadonstartup|nucleus.world.setloadonstartup.base|设置一个世界在服务端启动的时候是否加载。
+world|/world setpvpenabled|nucleus.world.setpvpenabled.base|设置一个世界是否允许PVP。
+world|/world setspawn|nucleus.world.setspawn.base|设置一个世界的出生点。
+world|/world spawn|nucleus.world.spawn.base|传送到一个世界的出生点。
+world|/world teleport|nucleus.world.teleport.base|传送自己或者其他玩家到一个特定的世界。
+world|/world unload|nucleus.world.unload.base|使一个已经加载的世界变成未加载状态。
