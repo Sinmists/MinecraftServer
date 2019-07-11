@@ -68,8 +68,7 @@ storage-method: sqlite
 第一件事情就是给你LP的所有权限。
 当LP首次安装后，没有人能够使用插件的任何命令。
 
-在服务器控制台输入以下命令，注意修改用户名
-`/lp user Sinmists permission set luckperms.* true` 
+建议创建权限组后将管理员添加到权限组，而非直接给与管理员权限
 
 **创建第一个权限组owner**
 
@@ -94,6 +93,24 @@ storage-method: sqlite
 #### 常用命令解析
 
 >此处只列出常用命令，全部命令请查看官网文档
+
+```
+1.设置前缀
+让owner权限组的玩家拥有 "&4[腐竹] " 前缀，在admin权限组的玩家拥有 "&c[管理员] " 前缀的话，运行：
+/lp creategroup owner
+/lp creategroup admin
+/lp group owner parent add admin
+/lp group owner meta addprefix 100 "&4[腐竹] "
+/lp group admin meta addprefix 90 "&c[管理员] "
+如果要将owner用户组的称号改为使用 "&5" 这个颜色代码的话，要想删除之前设定的值，需要运行：
+/lp group owner meta removeprefix 100
+这会将所有设定给admin权限组的，优先级为100的前缀全部移除
+```
+```
+2.设置默认玩家Home上限为2个
+/lp group default meta set home-count 2
+注意继承关系，高级权限组按需设置更大数值
+```
 
 ##### 基础
 ```
@@ -344,6 +361,129 @@ cleartrack <track> [context...]
 <track> - 移除的路线 * [context...] - 用于过滤的上下文
 移除指定路线的玩家/组的所有继承组。
 ```
+
+##### 元数据 (/lp user \ meta ... | /lp group \ meta ...)
+```
+/lp user/group <user|group> meta info
+权限: luckperms.user.meta.info or luckperms.group.meta.info
+显示用户/组的继承元数据，前缀和后缀。
+
+/lp user/group <user|group> meta set
+权限: luckperms.user.meta.set or luckperms.group.meta.set
+参数:
+
+<key> - 设置的键值
+<value> - 设置的键值的值
+[context...] - 设置的元数据的上下文
+设置用户/组的键值对元数据，这些值可以用于读取并且可以通过其他使用 Vault 或者 Sponge Permissions API 的插件更改。
+
+/lp user/group <user|group> meta unset
+权限: luckperms.user.meta.unset or luckperms.group.meta.unset
+参数:
+
+<key> - 取消设置的键
+[context...] - 取消设置的元数据的上下文
+取消设置一个用户或组的元数据键值。
+
+/lp user/group <user|group> meta settemp
+权限: luckperms.user.meta.settemp or luckperms.group.meta.settemp
+参数:
+
+<key> - 设置的键值
+<value> - 设置的键的值
+<duration> - 元数据过期的时间
+[context...] - 设置的元数据的上下文
+给一个玩家/组设置临时元数据键值，提供 false 值将会否定这个权限。持续时间应为时间段或者一个标准的 Unix 时间戳，比如 "3d13h45m" 将会设置权限在 3 天, 13 小时 45 分钟后过期。"1482694200" 会设置过期时间为 7:30PM 于 25th December 2016。
+
+/lp user/group <user|group> meta unsettemp
+权限: luckperms.user.meta.unsettemp or luckperms.group.meta.unsettemp
+参数:
+
+<key> - 取消设置的键
+[context...] - 取消设置的元数据的上下文
+取消设置一个用户或组的临时元数据。
+
+/lp user/group <user|group> meta addprefix
+权限: luckperms.user.meta.addprefix or luckperms.group.meta.addprefix
+参数:
+
+<priority> - 添加前缀的优先度
+<prefix> - 实际的前缀字符串
+[context...] - 添加前缀的上下文
+给一个玩家/组设置前缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta addsuffix
+权限: luckperms.user.meta.addsuffix or luckperms.group.meta.addsuffix
+参数:
+
+<priority> - 添加后缀的优先度
+<suffix> - 实际的后缀字符串
+[context...] - 添加后缀的上下文
+给一个玩家/组设置后缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta removeprefix
+权限: luckperms.user.meta.removeprefix or luckperms.group.meta.removeprefix
+参数:
+
+<priority> - 移除前缀的优先度
+<prefix> - 实际的前缀字符串
+[context...] - 添加前缀的上下文
+给一个玩家/组移除前缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta removesuffix
+权限: luckperms.user.meta.removesuffix or luckperms.group.meta.removesuffix
+参数:
+
+<priority> - 移除后缀的优先度
+<suffix> - 实际的后缀字符串
+[context...] - 添加后缀的上下文
+给一个玩家/组移除后缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta addtempprefix
+权限: luckperms.user.meta.addtempprefix or luckperms.group.meta.addtempprefix
+参数:
+
+<priority> - 添加前缀的优先度
+<prefix> - 实际的前缀字符串
+<duration> - 前缀过期的时间
+[context...] - 添加前缀的上下文
+给一个玩家/组设置临时前缀，提供 false 值将会否定这个权限。持续时间应为时间段或者一个标准的 Unix 时间戳，比如 "3d13h45m" 将会设置权限在 3 天, 13 小时 45 分钟后过期。"1482694200" 会设置过期时间为 7:30PM 于 25th December 2016。
+
+/lp user/group <user|group> meta addtempsuffix
+权限: luckperms.user.meta.addtempsuffix or luckperms.group.meta.addtempsuffix
+参数:
+
+<priority> - 添加后缀的优先度
+<suffix> - 实际的后缀字符串
+<duration> - 后缀过期的时间
+[context...] - 添加后缀的上下文
+给一个玩家/组设置临时后缀，提供 false 值将会否定这个权限。持续时间应为时间段或者一个标准的 Unix 时间戳，比如 "3d13h45m" 将会设置权限在 3 天, 13 小时 45 分钟后过期。"1482694200" 会设置过期时间为 7:30PM 于 25th December 2016。
+
+/lp user/group <user|group> meta removetempprefix
+权限: luckperms.user.meta.removetempprefix or luckperms.group.meta.removetempprefix
+参数:
+
+<priority> - 移除前缀的优先度
+<prefix> - 实际的前缀字符串
+[context...] - 添加前缀的上下文
+给一个玩家/组移除临时前缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta removetempsuffix
+权限: luckperms.user.meta.removetempsuffix or luckperms.group.meta.removetempsuffix
+参数:
+
+<priority> - 移除后缀的优先度
+<suffix> - 实际的后缀字符串
+[context...] - 添加后缀的上下文
+给一个玩家/组移除临时后前缀，使用 " " 来添加空格。
+
+/lp user/group <user|group> meta clear
+权限: luckperms.user.meta.clear or luckperms.group.meta.clear
+参数:
+
+[context...] - 用于过滤的上下文
+移除所有的元数据，前后缀。
+```
 ---
 
 ## [基础指令]Nucleus
@@ -353,12 +493,76 @@ cleartrack <track> [context...]
 
 ### 安装
 
-下载[最新版本]()放入Mod文件夹即可
+下载[最新版本](https://ore.spongepowered.org/Nucleus/Nucleus/versions)放入Mod文件夹即可
+
+#### 初始化配置文件
+
+##### \config\nucleus\main.conf
+
+- AFK
+`messages {` 修改afk状态玩家接收到的信息
+
+- Core
+`kick-on-stop {` 服务器关闭前踢出所有玩家设置为true后，可修改呈现给玩家的信息
+`offline-user-tab-limit=` 确定离线玩家的最大数量
+
+- Home
+`respawn-at-home=` 玩家重生将会回到他们默认名为home的家
+
+- Info
+`motd-title=` 用于展示登录信息MOTD的标题
+
+- Name Banning
+`default-reason=` 修改用户名不合法的提示信息
+
+- Player Info
+`enabled=` 启用，`/list`指令将会按用户组显示玩家列表
+
+- Protection
+`disable-crop-trample` 禁止踩踏农田
+`mob-griefing` 禁止生物破坏地形
+
+- Rules
+`rules-title=` 规则界面的标题
+
+##### \config\nucleus\info
+
+可在该文件夹下添加`.txt`文件，在使用`/info`命令时查看各文件内容
+
+**注意！编码需改为UTF-8，否则会显示乱码**
+
+### 权限分配
+
+默认将权限分为以下5类：
+- `USER` - 普通玩家权限
+- `MOD` - 对玩家行为进行审核的权限，包括ban、jail等
+- `ADMIN` - 改变游戏机制与服务器管理方式的权限，包括绝大多数权限
+- `OWNER` - 少数可能导致严重服务器损坏的权限，通常只应由具有最终权限的人员使用
+- `NONE` - 高度专业化的权限，例如隐身登录，应根据具体情况决定，包括/nucleus setupperms初始化权限命令
+
+在[这里](https://nucleuspowered.org/docs/permissions.html)查看权限所属权限类别
+
+使用如下命令将权限按类别赋予权限组：
+`/nucleus setupperms <ROLE> <group>`
+例如将`USER`权限类赋予默认玩家权限组`default`：
+`/nucleus setupperms USER default`
+
+**默认玩家权限中没有`back`指令的使用权，请手动给予`default`权限组以`nucleus.back.base`权限**
+
+**注意！** 高权限类并不继承低权限类的权限，建议使用权限管理插件的`parent`命令继承低权限组
+
+**警告！！** 不要再任何时候给玩家"*"权限，这种用法为Bukkit时代的习惯用法，但是并不适用于Sponge！如果给与，那么他将会永久在登录服务器的时候保持隐身状态！
 
 ### 常用命令解析
-[这里](https://nucleuspowered.org/docs/commands2.html)检查命令详细用法
+
+`/nucleus reload` 重新加载插件配置，但如果涉及功能的启用或禁用需要重启服务器
+`/serverstat` 显示服务器状态
+`/stop [reason]` 覆盖默认服务器关闭/重启的时候，呈现给玩家的信息
+`/speed` 获得最大速度增益
 
 ### 所有命令
+
+版本更新会添加更多命令，在[这里](https://nucleuspowered.org/docs/commands2.html)查看最新所有命令
 
 #### admin模块
 模块|命令|基础权限|命令描述
@@ -762,3 +966,145 @@ world|/world setspawn|nucleus.world.setspawn.base|设置一个世界的出生点
 world|/world spawn|nucleus.world.spawn.base|传送到一个世界的出生点。
 world|/world teleport|nucleus.world.teleport.base|传送自己或者其他玩家到一个特定的世界。
 world|/world unload|nucleus.world.unload.base|使一个已经加载的世界变成未加载状态。
+
+---
+
+## [经济]EconomyLite
+
+[官方文档](http://flibiostudio.github.io/EconomyLiteDocs/) | 
+[中文文档](http://www.mcbbs.net/thread-726623-1-1.html)
+
+### 安装
+
+下载[最新版本](https://ore.spongepowered.org/Flibio/EconomyLite/versions)放入Mod文件夹即可
+
+#### 初始化配置文件
+
+##### \config\economylite\messages.conf
+复制以下内容并覆盖
+```
+command-balance="&6当前余额: &a{balance} &6{label}"
+command-balanceother="&6{player}的余额: &a{balance} &6{label}"
+command-baltop-data="&7[&f{position}&7] &e{name}: &a{balance} &e{label}"
+command-baltop-head="&6&l土豪榜"
+command-baltop-invalidpage="&c没有这个页码!"
+command-baltop-navigation="&7[&a{button}&7]"
+command-baltop-nodata="&c没找到任何数据!"
+command-currency-changed="&6货币已改成&a{currency}!"
+command-currency-confirm="&6点击该消息以确认切换到&a{currency}!"
+command-currency-created="&6已注册新货币: &a{currency}!"
+command-currency-current="&6当前的货币: &a{currency}!"
+command-currency-delete="&6执行 &a/currency delete <currency> &6或点击货币来删除一种货币!"
+command-currency-deleteconfirm="&6点击该消息以确认删除&a{currency}!"
+command-currency-deleted="&6成功删除货币&a{currency}!"
+command-currency-deletedefault="&c你不能删除当前的默认货币!"
+command-currency-exists="&c该货币已存在!"
+command-currency-invalid="&c未找到这种货币!"
+command-currency-selectnew="&6执行 &a/currency set <currency> &6或点击新货币来改变货币!"
+command-econ-addfail="&c给{name}余额添加货币失败!"
+command-econ-addsuccess="&a成功给&6{name}&a余额添加货币!"
+command-econ-notify="&6你的余额被修改了!"
+command-econ-removefail="&c无法删除{name}余额中的货币!"
+command-econ-removesuccess="&a成功删除&6{name}&a余额中的货币!"
+command-econ-setfail="&c无法给{name}设置余额!"
+command-econ-setsuccess="&a成功给&6{name}设置余额!"
+command-error="&c出现内部错误!"
+command-invalidsource="&c你必须是一个{sourcetype}来使用此指令!"
+command-migrate-completed="&a转换完毕!"
+command-migrate-confirm="&c转换系统将会覆盖现有的数据- &6请执行 &a/migrate <mode> yes &6来确认转换!"
+command-migrate-fail="&c转换失败!"
+command-migrate-nomode="&c请选择有效的转换模式!"
+command-noperm="&c你没权限使用该指令!"
+command-pay-confirm="&a{player}不在线! 你仍然想寄钱过去吗?"
+command-pay-confirmno="&c{player}没确认支付!"
+command-pay-failed="&c为 {target} 付款失败!"
+command-pay-invalid="&c指定的货币无效!"
+command-pay-notyou="&c你不能给你自己打钱!"
+command-pay-success="&6{target} &a成功支付 &6{amountandlabel}&a!"
+command-pay-target="&6你收到了来自&a{sender}&6的&a{amountandlabel}!"
+command-refresh-fail="&c重置数据库缓存失败!"
+command-refresh-success="&a重置数据库缓存成功!"
+command-usage="&a用法: &f{command} {subcommands}"
+module-loan-ask="&6你想获取贷款 &a{amount} &6{label}? (输入 &a/loan accept &6或 &a/loan deny&6)"
+module-loan-balance="&6当前贷款余额: &a{balance} &6{label}"
+module-loan-fail="&c贷款时发生错误!"
+module-loan-full="&c你的贷款余额已满，请先偿还一些贷款!"
+module-loan-interest="&6贷款的利率为 &a{rate}&6!"
+module-loan-no="&c贷款已被取消!"
+module-loan-noloan="&c你还没有提供贷款!"
+module-loan-partial="&c你获得了一些贷款!"
+module-loan-payed="&6支付 &a{amount} &6{label} 到了你的贷款余额!"
+module-loan-payedfail="&c贷款支付失败!"
+module-loan-payment="&6将添加 &a{amount} &6{label} 到你的贷款余额!"
+module-loan-yes="&a贷款成功!"
+```
+
+##### \config\economylite\currencies.conf
+
+`plural` 复数货币
+`singular` 单数货币
+`symbol` 符号，可用¥
+`current` 当前使用的货币
+
+
+### 命令与权限
+
+玩家指令：
+```
+/balance [<player>] - 查看余额
+权限: economylite.balance : economylite.admin.balanceothers
+/pay <player> <amount> - 给其他玩家打钱.
+权限: economylite.pay
+/payv <account> <amount> - 给虚拟账户打钱
+权限: economylite.virtual.pay
+/baltop [<page>] - 查看金钱排行榜.
+权限: economylite.baltop
+```
+
+贷款系统指令：
+```
+/loan - 查看基本的贷款命令
+权限: economylite.loan
+/loan balance - 查看你贷款的余额
+权限: economylite.loan.balance
+/loan take <amount> - 贷款指定金额
+权限: economylite.loan.take
+/loan pay <amount> - 为你的贷款余额付钱.
+权限: economylite.loan.pay
+/loan accept - 接受一个贷款
+权限: economylite.loan.accept
+/loan deny - 否认一个贷款
+权限: economylite.loan.deny
+```
+
+管理员指令：
+```
+/econ set | add | remove <player> <amount> - 添加或设置或删除指定玩家的余额.
+权限: economylite.admin.econ : economylite.admin.econ.set : economylite.admin.econ.add : economylite.admin.econ.remove
+/econ setall <amount> - 设置服务器上所有人的余额
+权限: economylite.admin.econ.setall (Also requires economylite.admin.econ)
+/currency set | delete <currency> - 设置或删除或显示货币
+权限: economylite.admin.currency : economylite.admin.currency.set : economylite.admin.currency.delete
+/currency create <singular> <plural> <symbol> - 创建一种新的货币
+权限: economylite.admin.currency.create
+/vbalance <account> - 查看虚拟账户的余额
+权限: economylite.admin.virtual.balance
+/vecon set | add | remove <account> <amount> - 添加或设置或删除虚拟账户的余额
+权限: economylite.admin.virtual.set : economylite.admin.virtual.add : economylite.admin.virtual.remove
+/vpay <player> <amount> - 给指定玩家的虚拟账户打钱
+权限: economylite.admin.virtual.pay
+/migrate <mode> [<confirm>] - 将其他经济插件的数据迁移到EconomyLite
+```
+
+---
+
+## [领地]GriefPrevention
+
+[官方文档](https://github.com/MinecraftPortCentral/GriefPrevention/wiki/Getting-Started) | 
+[中文文档](http://www.mcbbs.net/thread-711313-1-1.html)
+
+### 安装
+
+下载[最新版本](https://ore.spongepowered.org/blood/GriefPrevention/versions)放入Mod文件夹即可
+
+#### 初始化配置文件
