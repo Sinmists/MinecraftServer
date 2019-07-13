@@ -14,6 +14,16 @@
 
 ---
 
+## [主模组]Sponge
+
+## 安装
+
+在原版server.jar文件上安装forge，下载[合适版本](https://www.spongepowered.org/downloads/)Sponge放入Mod文件夹即可，注意forge与sponge版本号需相同。
+
+### 权限配置
+
+给与服主 `sponge` 权限，给与默认玩家权限组 `sponge.command.help` 权限让玩家查看可用命令列表
+
 ## [权限管理]LuckPerms
 
 [Github](https://github.com/PluginsCDTribe/LuckPerms) | 
@@ -1101,10 +1111,859 @@ module-loan-yes="&a贷款成功!"
 ## [领地]GriefPrevention
 
 [官方文档](https://github.com/MinecraftPortCentral/GriefPrevention/wiki/Getting-Started) | 
-[中文文档](http://www.mcbbs.net/thread-711313-1-1.html)
+[中文文档](https://pluginscdtribe.github.io/wiki/griefprevention/)
 
 ### 安装
 
 下载[最新版本](https://ore.spongepowered.org/blood/GriefPrevention/versions)放入Mod文件夹即可
 
-#### 初始化配置文件
+### 配置文件初始化
+
+#### \config\griefprevention\worlds\global.conf
+
+- claim
+
+`auto-chest-claim-block-radius=-1` 设置放下箱子自动设置领地的半径
+
+- general
+
+`limit-pistons-to-claims=true` 限制从领地外用活塞推领地内方块
+
+`limit-tree-growth=true` 限制领地外的树生长到领地内
+
+`max-claim-inspection-distance=100` 持木棍右键检查附近领地的范围半径
+
+- logging
+
+`suspicious-activity=true` 记录可疑日志
+
+- playerdata
+
+`claim-block-system=VOLUME` 领地方块计数默认3D模式
+
+### 选项初始化
+
+`lp group default meta set griefprevention.blocks-accrued-per-hour 60` 每小时在线赚取的领地块数量,50小时累积到20长10宽15高=3000，即每小时60块
+
+`lp group default meta set griefprevention.claim-create-mode 1` 玩家默认登录圈地方式为3D模式
+
+`lp group default meta set griefprevention.create-claim-limit-basic 2` 每个玩家最大基础领地为2个
+
+`lp group default meta set griefprevention.initial-claim-blocks 100` 玩家初始领地方块数量为100块
+
+`lp group default meta set griefprevention.max-accrued-claim-blocks 3000` 通过在线时长累积的最多领地方块数量为3000块
+
+`lp group default meta set griefprevention.claim-expiration-basic 31` 超过31天不上线的玩家基本领地将被删除
+
+设置完成后使用 `gpreload` 激活配置
+
+### 权限配置
+
+给与管理员权限组 `griefprevention.admin` ，默认玩家权限组 `griefprevention.user`
+
+**注意！不要给与 `griefprevention.*` 权限以免插件报错**
+
+#### 领地
+权限|描述
+-|-
+griefprevention.user.claim.command.abandon|允许放弃领地
+griefprevention.user.claim.command.abandon-all|允许放弃所有领地
+griefprevention.user.claim.command.abandon-top-level|允许放弃一个领地以及所有子区域
+griefprevention.user.claim.command.cuboid|允许切换长方体选择模式
+griefprevention.user.claim.command.list|允许列出玩家领地列表
+griefprevention.user.claim.command.basic-mode|允许使用领地铲
+griefprevention.user.claim.command.give.book|允许获得一本领地指南
+griefprevention.user.claim.command.give.pet|允许玩家送出一直已经驯服的宠物
+griefprevention.user.claim.command.info.others|允许获得其它领地的信息
+griefprevention.user.claim.command.info.base|允许获得领地信息
+griefprevention.user.claim.command.info.teleport.others|允许用户在其它领地的信息页使用传送
+griefprevention.user.claim.command.info.teleport.base|允许用户在领地信息页使用传送
+griefprevention.user.claim.command.name|允许设置领地名称
+griefprevention.user.claim.command.farewell|允许设置领地告别语
+griefprevention.user.claim.command.greeting|允许设置领地欢迎语
+griefprevention.user.claim.command.set-spawn|允许设置领地出生点
+griefprevention.user.claim.command.spawn|允许使用领地出生点
+griefprevention.user.claim.command.subdivide-mode|允许使用子区域铲
+griefprevention.user.claim.command.transfer|允许转移自己的领地
+griefprevention.user.claim.command.buy-blocks|允许购买领地 (需经济插件支持)
+griefprevention.user.claim.command.sell-blocks|允许出售领地 (需经济插件支持)
+griefprevention.user.claim.command.list-flags|允许列出领地属性列表
+griefprevention.user.claim.command.ban-item|允许在领地内封禁物品
+griefprevention.user.claim.command.unban-item|允许在领地内解禁物品
+griefprevention.user.claim.command.siege|允许使用围攻指令
+griefprevention.user.claim.command.inherit|允许切换从父领地继承
+griefprevention.user.claim.create|允许创建领地
+griefprevention.user.claim.cuboid.basic|允许创建/重新设置3D领地
+griefprevention.user.claim.cuboid.subdivision|允许创建/重新设置3D子区域
+griefprevention.user.claim.resize|允许重新设置领地大小
+griefprevention.user.claim.siege.immune|不会被包围
+griefprevention.user.claim.visualize|使自己的领地可视化
+griefprevention.user.claim.visualize.nearby|使周围的领地可视化
+griefprevention.user.command.info.base|获得关于自己的信息
+griefprevention.user.command.info.others|获得关于其它玩家的信息
+
+#### 属性
+权限|描述
+-|-
+griefprevention.user.claim.flag|允许玩家在自己的领地上编辑“使用领地属性”
+griefprevention.user.claim.command.flag.base|允许使用关于领地属性的指令
+griefprevention.user.claim.command.flag.debug|允许开启领地属性debug模式
+griefprevention.user.claim.command.flag.player|允许使用关于领地属性的玩家指令
+griefprevention.user.claim.command.flag.group|允许使用关于领地属性的组指令
+griefprevention.user.claim.command.flag.reset|允许使用领地属性重置指令
+
+#### 管理
+权限|描述
+-|-
+griefprevention.admin.claim.command.adjust-claim-blocks|允许编辑扩大领地范围
+griefprevention.admin.claim.command.admin-mode|允许使用管理员领地铲模式
+griefprevention.admin.claim.command.clear|
+griefprevention.admin.claim.command.permission-group|允许使用关于组权限的领地指令
+griefprevention.admin.claim.command.permission-player|允许使用关于玩家权限的领地指令
+griefprevention.admin.claim.command.debug|
+griefprevention.admin.claim.command.delete.base|允许使用删除领地指令
+griefprevention.admin.claim.command.delete.basic|允许删除普通领地
+griefprevention.admin.claim.command.delete.admin|允许删除管理员领地
+griefprevention.admin.claim.command.delete-claims|允许删除另一个玩家的所有领地
+griefprevention.admin.command.delete-admin-claims|允许删除所有管理员领地
+griefprevention.admin.claim.command.list.admin|允许列出管理员领地
+griefprevention.admin.command.set-accrued-claim-blocks|允许编辑领地方块数量
+griefprevention.admin.command.restore-nature.base|
+griefprevention.admin.command.restore-nature.aggressive|
+griefprevention.admin.command.restore-nature.fill|
+griefprevention.admin.command.reload|允许重载插件
+griefprevention.admin.claim.set-admin-flags|允许在管理员领地里编辑领地属性
+griefprevention.admin.claim.list.basic|允许列出所有普通领地
+griefprevention.admin.claim.flag|允许编辑所有属性
+griefprevention.admin.flag-defaults|允许编辑默认属性
+griefprevention.admin.flag-overrides|允许编辑忽视属性
+griefprevention.admin.claim.wilderness|允许编辑野外领地
+griefprevention.admin.claim.manage.options|允许为玩家和组设置属性
+griefprevention.admin.claim.command.ignore.base|允许使用无视领地的指令
+griefprevention.admin.claim.command.ignore.basic|允许无视普通领地的属性
+griefprevention.admin.claim.command.ignore.admin|允许无视管理员领地的属性
+griefprevention.admin.claim.command.ignore.wilderness|允许无视野外领地的属性
+griefprevention.admin.claim.cuboid|
+griefprevention.admin.claim.resize.admin|允许重新划定管理员领地的大小
+griefprevention.admin.claim.resize.admin.subdivision|允许重新划定管理员子领地的大小
+griefprevention.admin.claim.resize.basic|允许重新划定普通领地的大小
+griefprevention.admin.claim.resize.basic.subdivision|允许重新划定普通子领地的大小
+griefprevention.admin.claim.override.resize|
+griefprevention.admin.claim.override.limit|允许忽视领地大小限制
+griefprevention.admin.eavesdrop.signs|
+griefprevention.admin.command.unlock-drops|
+griefprevention.admin.no-pvp-immunity
+
+#### 聊天
+权限|描述
+-|-
+griefprevention.user.chat.command.ignore|允许无视玩家
+griefprevention.user.chat.command.unignore|允许解除无视玩家
+griefprevention.admin.chat.command.list|允许列出无视玩家列表
+griefprevention.admin.chat.command.separate|允许分开玩家
+griefprevention.admin.chat.command.unseparate|允许解除玩家分开
+griefprevention.admin.chat.command.softmute|允许禁言玩家
+griefprevention.admin.chat.not-ignorable|有此权限的玩家不能被无视
+griefprevention.admin.chat.spam-override|有此权限的玩家不会被语言过滤影响
+griefprevention.admin.chat.eavesdrop|允许玩家看到禁言内容
+
+#### 帮助
+权限|描述
+-|-
+griefprevention.user.command.help|允许查看帮助
+
+#### 信任
+权限|描述
+-|-
+griefprevention.user.claim.command.trust.access|允许添加客人
+griefprevention.user.claim.command.trust.container|允许添加保管员
+griefprevention.user.claim.command.trust.build|允许添加建造者
+griefprevention.user.claim.command.trust.permission|允许添加管理员
+griefprevention.user.claim.command.trust.list|允许列出信任玩家列表
+griefprevention.user.claim.command.trust.remove|允许取消信任玩家
+
+### 命令
+
+#### 领地
+
+```
+/abandonclaim
+删除你所在的领地。
+
+/abandonallclaims
+删除你所有的领地。
+
+/abandontopclaim
+删除你所在的领地以及其所有子领地。
+
+/basicclaims
+别名: bc
+
+切换圈地模式为基础圈地模式。
+
+/claim
+将WorldEditor所选区域声明为一个领地. 贴士: 如果服务器没有安装WE插件，这个指令将会失效。
+
+/claimbook [player]
+给予指定玩家一本认领指南。（译者注：YouTube外链，慎用）
+
+/claimfarewell <"message">
+设置你所在领地的道别语（当玩家进入领地时的提示语）。
+
+删除道别语请使用 ：/claimfarewell ""
+
+/claimgreeting <"message">
+设置你所在领地的问候语（当玩家进入领地时的提示语）。
+
+删除问候语请使用 ： /claimgreeting ""
+
+/claimbuy
+查看正在出售的领地列表。单击 [Buy] 进行购买。
+
+/claimsell [price]
+以指定的价格出售你所在的领地，取消出售时，请将price设为 -1 或在 /claiminfo中的 ForSale 设置为为 false。
+
+/buyclaimblocks [numberOfBlocks]
+别名: buyclaim
+
+使用服务器货币购买额外的领地上限。若服务器没有经济插件则此指令失效（译者注：如果配置文件中关闭了领地块买卖功能，此指令也失效）。
+
+/sellclaimblocks [numberOfBlocks]
+别名: sellclaim
+
+以服务器货币卖出你的领地块上限。若服务器没有经济插件则此指令失效（译者注：如果配置文件中关闭了领地块买卖功能，此指令也失效）。
+
+/cuboid
+别名: cuboidclaims
+
+切换三维认领模式。
+
+/inherit
+别名: inheritpermissions
+
+切换到细分继承模式（译者注：子领地）。
+
+/claimlist [<player> [world]]
+别名: claimslist
+
+列出指定玩家的可认领领地块上限和现有领地信息。
+
+/claiminfo [id]
+别名: claimsinfo
+
+查看你所在的（或通过领地id查询指定的）领地信息。
+
+/claimsetspawn
+别名: claimsetspawn
+
+将你的当前位置设置为领地的传送点。
+
+/claimspawn
+别名: claimspawn
+
+将你传送到指定领地的可用传送点。
+
+/claimsubdivide
+别名: subdivideclaims, sc
+
+切换到细分模式，用于细分你的领地。
+
+/claimtransfer [player]
+别名: transferclaim
+
+将你所在位置领地的所有权转移给一个玩家。
+
+/givepet cancel|<player>
+将你驯养的宠物放生或送给他人。
+
+/claimname ["name"]
+给你的领地重命名。
+
+/playerinfo <player> <world>|<player>|[<world>]
+查看一个玩家的信息。
+```
+
+#### 选项（Flag）
+
+```
+/claimflagdebug
+别名: cfd
+
+切换到领地选项（Flag）的调试模式。
+
+/claimflag [<flag> <source> <target> <value> [context] | <target> <value> [context]]
+别名: cf
+
+查看/设置你所在领地的选项（Flag）。
+
+/claimflaggroup <group> <flag> <source> <target> <value> | <target> <value>
+别名: cfg
+
+查看/设置你所在领地关于制定权限组的选项（Flag）。
+
+/claimflagplayer <player> <flag> <source> <target> <value> | <target> <value>
+别名: cfp
+
+为指定玩家设定管理选项（Flag）。
+
+/claimflagreset
+别名: cfr
+
+将领地的管理选项（Flag）还原为默认值。
+```
+
+#### 选项
+
+```
+/claimoption [<option> <value>]
+别名: co
+
+查看/设置当前领地中的选项。
+
+/claimoptiongroup <group> [<option> <value>]
+别名: cog
+
+查看/设置指定权限组在当前领地中的选项。
+
+/claimoptionplayer <player> [<option> <value>]
+别名: cop
+
+查看/设置指定玩家在当前领地中的选项。
+```
+
+#### 信任
+
+```
+/accesstrust <player> <group>
+别名: at
+授予玩家进入你的领地和与床进行交互的权限。
+
+/containertrust <player>|<group>
+别名: ct
+授予玩家进入你的领地和与容器、庄稼、动物、床、按钮和杠杆进行交互的权限。
+
+/trust <player>|<group>
+别名: t
+授予玩家当前领地的最高使用权限。
+
+/trustall <player>|<group>
+别名: ta
+授予玩家你所有领地的最高使用权限。
+
+/permissiontrust <player>|<group>
+别名: pt
+授予玩家授予他人权限的权限。
+
+/untrust <player>|<group>
+别名: ut
+将指定玩家从你领地的trust列表中移除。
+
+/untrustall <player>|<group>
+别名: uta
+将指定玩家从你所有领地的trust列表中移除。
+
+/trustlist
+列出当前领地的trust授权玩家。
+```
+
+#### 管理员
+
+```
+/adjustbonusclaimblocks <player> <amount> [world]
+别名: acb
+
+增加/减去指定玩家的现有领地块。
+
+/setaccruedclaimblocks <player> <amount> [<world>]
+别名: scb
+
+设置指定玩家的领地块认领上限（慎用）。
+
+/adminclaims
+别名: ac
+
+切换至管理员圈地模式。
+
+/adminclaimlist [world]
+别名: adminclaimslist, claimadminlist
+
+列出所有的管理员领地。
+
+/deleteclaim
+别名: dc
+
+删除你所在的领地，即使不是你自己的领地。
+
+/deleteallclaims [player]
+别名: dac
+
+删除指定玩家的所有领地
+
+/deletealladminclaims
+删除所有的管理员领地。
+
+/ignoreclaims
+别名: ic
+
+切换忽略领地模式。
+
+/claimclear <target> [<claim> [<world>]]
+允许清除一个或者多个领地的实体。
+
+/claimpermissiongroup <group> [<permission> <value>]
+别名: cpg
+
+给指定的权限组设定一个可带有注释的权限。
+
+/claimpermissionplayer <player> [<permission> <value>]
+别名: cpp
+
+给指定的玩家设定一个可带有注释的权限。
+
+/restorenature
+别名: rn
+
+切换至复原（restoration）模式。
+
+/restorenatureaggressive
+别名: rna
+
+切换至侵略复原模式（译者注：用于GF插件的入侵模式）。
+
+/restorenaturefill [radius]
+别名: rnf
+
+切换至填补（Fill）模式。
+
+/unlockdrops
+允许其他玩家拾起你死亡掉落的道具。
+
+/gpdebug <on>|<off>|<record>|<paste> [<player>]
+切换调试模式。
+
+/gpreload
+重载Grief Prevention的配置设定。
+```
+
+#### 聊天
+
+```
+/ignoredplayerlist
+别名: ignoredlist
+
+查看你的屏蔽名单。
+
+/ignoreplayer [player]
+别名: ignore
+
+忽略指定玩家的聊天信息。
+
+/unignoreplayer [player]
+别名: unignore
+
+取消对指定玩家的聊天信息的忽略设置。
+
+/separate <player1> <player2>
+强制两个玩家无法互相接收消息。
+
+/unseparate <player1> <player2>
+关闭指定两个玩家的/separate操作
+
+/softmute <player>
+Toggles whether a player's messages will only reach other soft-muted players（译者注：看不懂）。
+```
+
+#### 其他
+
+```
+/gphelp
+列出每一条指令的详细信息。
+```
+
+### 选项总览
+
+使用 `/lp user/group <玩家|权限组> meta set <选项> <值> [服务器] [世界]` 改变选项值
+
+选项|默认值|描述
+-|-|-
+griefprevention.abandon-return-ratio-basic|1.0|当玩家放弃基础领地的时候，领地块的返还倍率。
+griefprevention.abandon-return-ratio-town|1.0|当玩家放弃城镇领地的时候，领地块的返还倍率。
+griefprevention.blocks-accrued-per-hour|120|每小时赚取的领地块数量，默认情况下，每个活跃状态下的玩家，每五分钟将会获得6个方块。提示：玩家需要在先前记录的位置至少移动三格的距离才算活跃。如果使用'wilderness-cuboids'(3D方式圈地模式，即不按通天的区块计算)模式的话，这个值的默认值将会改变为每小时赚取30720个方块，即每五分钟赚取1536个方块。
+griefprevention.claim-create-mode|0|玩家登陆后的默认圈地模式 (0 = 2D, 1 = 3D)
+griefprevention.create-claim-limit-basic|20|每个玩家的最大基础领地数 (0 = 不限制)
+griefprevention.create-claim-limit-town|1|每个玩家的最大城镇领地数 (0 = 不限制)
+griefprevention.create-claim-limit-subdivision|10|每个玩家的最大细分子领地数 (0 = 不限制)
+griefprevention.initial-claim-blocks|100|（默认情况下）玩家的初始领地块数量。提示：如果使用'wilderness-cuboids'模式，这个值默认为25600。
+griefprevention.max-accrued-claim-blocks|80000|通过在线活跃时间获取的领地块上限。不会影响购买和管理员赠予的数量。提示：如果使用'wilderness-cuboids'模式，这个值默认是20480000.
+griefprevention.claim-expiration-chest|7|超过此天数不上线的玩家，放置箱子生成的领地将会被清除。
+griefprevention.claim-expiration-basic|14|超过此天数不上线的玩家，基本类型的领地将会被清除。
+griefprevention.claim-expiration-town|14|超过此天数不上线的玩家，城镇类型的领地将会被清除。
+griefprevention.claim-expiration-subdivision|14|超过此天数不上线的玩家，其领地的子领地将会被清除。
+griefprevention.min-claim-level|0/255|领地创建的Y轴高度限制。
+griefprevention.max-claim-level|0/255|领地创建的Y轴高度限制。
+griefprevention.min-claim-size-basic-x|10/5000|基础领地的最小X轴向延展限制。
+griefprevention.max-claim-size-basic-x|10/5000|基础领地的最大X轴向延展限制。
+griefprevention.min-claim-size-basic-y|5/256|基础领地的最小Y轴向延展限制。
+griefprevention.max-claim-size-basic-y|5/256|基础领地的最大Y轴向延展限制。
+griefprevention.min-claim-size-basic-z|10/5000|基础领地的最小Z轴向延展限制。
+griefprevention.max-claim-size-basic-z|10/5000|基础领地的最大Z轴向延展限制。
+griefprevention.min-claim-size-town-x|32/10000|城镇类型领地的最小X轴向延展限制。
+griefprevention.max-claim-size-town-x|32/10000|城镇类型领地的最大X轴向延展限制。
+griefprevention.min-claim-size-town-y|32/256|城镇类型领地的最小Y轴向延展限制。
+griefprevention.max-claim-size-town-y|32/256|城镇类型领地的最大Y轴向延展限制。
+griefprevention.min-claim-size-town-z|32/10000|城镇类型领地的最小Z轴向延展限制。
+griefprevention.max-claim-size-town-z|32/10000|城镇类型领地的最大Z轴向延展限制。
+griefprevention.max-claim-size-subdivision-x|1000|子领地的最大X轴向延展限制。
+griefprevention.max-claim-size-subdivision-y|256|子领地的最大Y轴向延展限制。
+griefprevention.max-claim-size-subdivision-z|1000|子领地的最大Z轴向延展限制。
+
+---
+
+## [登录密码]FlexibleLogin
+
+[官方文档](https://github.com/games647/FlexibleLogin) | 
+[中文配置](https://github.com/games647/FlexibleLogin/wiki/%E4%B8%AD%E6%96%87----Chinese)
+
+### 安装
+
+下载[最新版本](https://github.com/games647/FlexibleLogin/releases)放入Mod文件夹即可
+
+### 初始化配置文件
+
+#### \config\flexiblelogin\config.conf
+
+`messageInterval=5` 显示未登录信息提示间隔
+
+#### \config\flexiblelogin\locale.conf
+
+复制以下并覆盖
+
+```
+# 一个账户已经存在了，因此无法创建用户
+accountAlreadyExists {
+    color="dark_red"
+    text="此账号已经注册过了！"
+}
+# 当玩家成功注册的时候
+accountCreated {
+    color="dark_green"
+    text="注册成功！"
+}
+# 当一个账户删除之后
+accountDelete {
+    arguments {
+        account {
+            optional=true
+        }
+    }
+    closeArg="}"
+    content {
+        color=yellow
+        extra=[
+            {
+                text="删除账户："
+            },
+            {
+                text="{account}"
+            },
+            {
+                text="!"
+            }
+        ]
+        text=""
+    }
+    openArg="{"
+    options {
+        closeArg="}"
+        openArg="{"
+    }
+}
+# 当一个玩家的账户不存在的时候
+accountNotFound {
+    color="dark_red"
+    text="用户不存在！"
+}
+# 当账户不存在与账户数据库的时候
+accountNotLoaded {
+    color="dark_green"
+    text="您的账户加载异常！"
+}
+# 如果玩家已经登录过了，当他们再次尝试登陆的时候
+alreadyLoggedIn {
+    color="dark_red"
+    text="你已经登录了！"
+}
+# 其他玩家想用一个已经在线的玩家名字登陆的时候
+alreadyOnline {
+    color="dark_green"
+    text="您已经在线了！"
+}
+# 如果玩家成功的修改了他的密码
+changePassword {
+    color="dark_green"
+    text="密码修改成功！"
+}
+# 如果电子邮件找回密码功能未启用
+emailNotEnabled {
+    color="dark_green"
+    text="未启用电子邮件恢复功能。"
+}
+# 当玩家使用设置电子邮件指令成功的设置了他的电子邮件的时候
+emailSet {
+    color="dark_green"
+    text="您成功设置了电子邮件。"
+}
+# 当错误发生的时候 (不该出现)
+errorExecutingCommand {
+    color="dark_red"
+    text="执行指令的过程中发生了异常，请检查控制台。"
+}
+# 强制注册失败，因为玩家在线
+forceRegisterOnline {
+    color="dark_green"
+    text="无法完成强制注册，此玩家当前在线！"
+}
+#成功的强制注册了账户
+forceRegisterSuccess {
+    color="dark_green"
+    text="强制注册成功"
+}
+# 当玩家输入了错误的密码
+incorrectPassword {
+    color="dark_red"
+    text="密码错误！"
+}
+# 踢出消息：当加入的玩家同已注册的玩家字符相同但大小写不同的时候
+invalidCase {
+    arguments {
+        username {
+            optional=true
+        }
+    }
+    closeArg="}"
+    content {
+        color=yellow
+        extra=[
+            {
+                text="错误的玩家ID。请以ID："
+            },
+            {
+                text="{username}"
+            },
+            {
+                text="加入游戏！"
+            }
+        ]
+        text=""
+    }
+    openArg="{"
+    options {
+        closeArg="}"
+        openArg="{"
+    }
+}
+# 当玩家以一个Mojang不认可的ID登录的时候
+invalidUsername {
+    color="dark_red"
+    text="无效的用户名 - 字母选择范围是 a-z,A-Z,0-9 并且长度在 2 到 16之间！"
+}
+# 当玩家通过相同Ip自动登录的时候
+ipAutoLogin {
+    color="dark_green"
+    text="自动登录"
+}
+# 当一个秘钥被创建的时候
+keyGenerated {
+    arguments {
+        code {
+            optional=false
+        }
+    }
+    closeArg="}"
+    content {
+        color=yellow
+        extra=[
+            {
+                text="秘钥生成成功: "
+            },
+            {
+                text="{code}"
+            }
+        ]
+        text=""
+    }
+    openArg="{"
+    options {
+        closeArg="}"
+        openArg="{"
+    }
+}
+# 最后一次在线时所记录的时间节点
+lastOnline {
+    arguments {
+        time {
+            optional=false
+        }
+        username {
+            optional=true
+        }
+    }
+    closeArg="}"
+    content {
+        color=yellow
+        extra=[
+            {
+                text="账号: "
+            },
+            {
+                text="{username}"
+            },
+            {
+                text="最后一次在线是"
+            },
+            {
+                text="{time}"
+            }
+        ]
+        text=""
+    }
+    openArg="{"
+    options {
+        closeArg="}"
+        openArg="{"
+    }
+}
+# 当玩家登陆成功的时候
+loggedIn {
+    color="dark_green"
+    text="登录成功"
+}
+# 当玩家成功的登出的时候
+loggedOut {
+    color="dark_green"
+    text="登出成功"
+}
+# 当玩家使用邮件密码找回功能的时候
+mailSent {
+    color="dark_green"
+    text="邮件已发送"
+}
+# 玩家尝试过多次数的错误密码
+maxAttempts {
+    color="dark_red"
+    text="你输入了太多次的错误密码！请联系管理员"
+}
+# 玩家到达了Ip注册上限
+maxIpReg {
+    color="dark_red"
+    text="你所使用的IP地址注册太多的账号了，请联系管理员。"
+}
+# 当玩家输入的Email地址不存在的时候
+notEmail {
+    color="dark_red"
+    text="您输入了一个错误的Email邮件地址!"
+}
+# 当玩家未登录的时候
+notLoggedIn {
+    color="dark_red"
+    text="未登陆，请输入/login+[密码]登陆游戏。"
+}
+# 当玩家未注册的时候
+notRegistered {
+    color="dark_red"
+    text="未注册，请输入/register+[密码]+[确认密码]完成注册。"
+}
+# 管理员重置插件的时候
+onReload {
+    color="dark_green"
+    text="插件重载成功！（汉化By-Tollainmear）"
+}
+# 当非玩家(例如：控制台、命令方块)尝试执行只有玩家能够执行的指令的时候
+playersOnly {
+    color="dark_red"
+    text="只有玩家可以执行此指令！"
+}
+# 当玩家执行指令并且`command only protection`启用的时候
+protectedCommand {
+    color="dark_red"
+    text="此指令收到保护，请登录"
+}
+# 当玩家使用TOTP注册，点击获取可扫描二维码的时候
+scanQr {
+    color=yellow
+    text="点击这里扫描二维码"
+}
+# 踢出信息：当玩家登录超时的时候
+timeoutReason {
+    color="dark_red"
+    text="登录超时"
+}
+# 当玩家注册密码过短的时候
+tooShortPassword {
+    color="dark_green"
+    text="您的密码太短了"
+}
+# 当TOTP不可用的时候
+totpNotEnabled {
+    color="dark_red"
+    text="Totp当前不可用，你必须输入两个密码。"
+}
+# 当玩家没有或者忘记递交用来找回密码电子邮件地址的时候
+uncommittedEmailAddress {
+    color="dark_red"
+    text="您没有输入任何Email地址！"
+}
+# 当两次输入的密码不同的时候
+unequalPasswords {
+    color="dark_red"
+    text="两次密码输入的不一样！"
+}
+# 当未注册玩家处理失败的时候
+unregisterFailed {
+    color="dark_red"
+    text="您的请求不是玩家ID也不是UUID。"
+}
+# 如果未注册玩家不能登录服务器的时候
+unregisteredKick {
+    color="dark_green"
+    text="您无法连接服务器，请到网页注册。"
+}
+```
+
+### 权限配置
+
+给与管理员权限组 `flexiblelogin` ，默认玩家权限组`flexiblelogin.command`
+
+```
+flexiblelogin.admin - 管理员权限
+flexiblelogin.command.login - 使用 /login 命令
+flexiblelogin.command.logout - 使用 /logout 命令
+flexiblelogin.command.changepw - 使用 /changepassword 命令
+flexiblelogin.command.register - 使用 /register 命令
+flexiblelogin.command.mail - 使用 /setemail 命令
+flexiblelogin.command.forgot - 使用 /forgot 命令
+flexiblelogin.no_auto_login - 拥有此权限的玩家无法使用自动登录的功能
+flexiblelogin.bypass - 拥有此权限的玩家可以跳过登录
+```
+
+### 命令
+
+```
+玩家命令:
+/reg /register <password> <password> - 使用密码进行注册
+/register - 使用TOTP生成密码
+/changepw /cp /changepassword <password> <password> - 更改当前密码
+/log /l /login <password|code> - 使用密码或验证码登录
+/logout - 登出
+/mail /setemail - 设置邮箱地址
+/forgot /forgotpassword - 发送忘记密码邮件
+/unregister <uuid|name> - 删除账户
+
+管理员命令: 
+/fl <reload|rl> - 重载配置文件
+/fl forcelogin <name> - 强制登录一个玩家
+/fl <accounts|acc> <name|ip> - 获取用户账号列表
+/fl <unregister|unreg> <name|uuid|--all> - 删除用户
+/fl <register|reg> <name|uuid> <pass> - 注册一个用户
+/fl <resetpw|resetpassword> <name> - 给用户设置新的密码
+```
