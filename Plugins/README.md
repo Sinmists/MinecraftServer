@@ -22,7 +22,19 @@
 
 ### 权限配置
 
-给与服主 `sponge` 权限，给与默认玩家权限组 `sponge.command.help` 权限让玩家查看可用命令列表
+```
+给与服主 `sponge` 权限
+
+给与默认玩家权限组以下权限：
+
+/help
+sponge.command.help 让玩家查看可用命令列表
+
+/ping
+nucleus.ping.base
+```
+
+---
 
 ## [权限管理]LuckPerms
 
@@ -1967,3 +1979,323 @@ flexiblelogin.bypass - 拥有此权限的玩家可以跳过登录
 /fl <register|reg> <name|uuid> <pass> - 注册一个用户
 /fl <resetpw|resetpassword> <name> - 给用户设置新的密码
 ```
+
+---
+
+## [创世神]Worldedit
+
+[官网](http://enginehub.org/worldedit/) | 
+
+### 安装
+
+下载[最新版本](https://ore.spongepowered.org/EngineHub/WorldEdit/versions)放入Mod文件夹即可
+
+### 权限配置
+
+给与管理员权限组 `worldedit` 权限
+
+### 命令
+
+# 待整理
+
+---
+
+## [前置-变量]PlaceholderAPI
+
+[官网](https://ore.spongepowered.org/rojo8399/PlaceholderAPI) | 
+[MCBBS](http://www.mcbbs.net/thread-847941-1-1.html)
+
+### 安装
+
+下载[修复版本](https://github.com/randombyte-developer/PlaceholderAPI/releases)放入Mod文件夹即可
+
+### 权限配置
+
+给与管理员权限组 `placeholderapi` 权限
+
+### 命令
+
+```
+/papi - 查看插件版本
+/papi list - 列出所有注册的变量符
+/papi info {placeholder} - 查看指定变量符的更多信息
+/papi parse {player} {placeholder} - 查看指定玩家的变量结果。
+/papi reload [placeholder] - 重载指定变量符，没有指定的话会重载整个插件
+/papi enable|disable {placeholder} - 开启/关闭指定的变量符
+```
+
+---
+
+## [箱子菜单]VirtualChest
+
+[官网](https://github.com/ustc-zzzz/VirtualChest) | 
+[中文文档](https://github.com/Tollainmear/VirtualChest-wiki-zh_CN/wiki)
+
+### 安装
+
+下载[最新版本](https://github.com/ustc-zzzz/VirtualChest/releases)放入Mod文件夹即可
+
+### 权限配置
+
+权限节点|描述
+-|-
+virtualchest|虚拟箱子的所有权限
+virtualchest.list|列出菜单清单的权限
+virtualchest.reload|重载本插件的权限
+virtualchest.bypass|忽略点击频率限制的权限
+virtualchest.open|为任何玩家打开任何菜单的权限
+virtualchest.open.others|为其他玩家打开菜单的权限
+virtualchest.open.self|为自己打开菜单的权限
+virtualchest.open.others.example|为其他玩家打开一个名为 example 的菜单的权限
+virtualchest.open.self.example|为自己打开名为 example 菜单的权限
+
+### 命令
+
+# 待整理
+
+---
+
+## [商店]UniversalMarket
+
+[官网](https://forums.spongepowered.org/t/universal-market-v1-3-1-10-2-1-12-2/22140) | 
+[中文文档](http://www.mcbbs.net/thread-792152-1-1.html)
+
+### 安装
+
+下载[汉化版本](http://www.mcbbs.net/thread-792152-1-1.html)，或[最新版本](https://github.com/Xwaffle1/UniversalMarket/releases)放入Mod文件夹即可
+
+### 配置文件初始化
+
+```
+Database {
+    database-name=market
+    ip="1.127.0.0"
+    password=password
+    port="3306"
+    # Use a SQL server that's not saved to a file.
+    use-external=false
+    username=admin
+}
+Market {
+    # 玩家不能挂售在环球市场上的黑名单列表
+    blacklist=[]
+    # 玩家挂售的商品是否会过期
+    enable-market-expire=true
+    # 作为挂售商品的手续费
+    market-price=1000
+    # 成交商品所需上缴的税率
+    market-tax=0.2
+    # 是否启用按 market-price 标准收费
+    pay-to-sell=false
+    # 以价格为基数，尝试上架商品是否收取税费
+    tax-to-sell=false
+    # 过期时间默认1天 / 24 小时。以毫秒为单位
+    time-market-expires=604800000
+    # 一个玩家在同一时间能上架几件商品
+    total-items-player-can-sell=10
+    # 您可以通过给予权限来定义指定玩家可上架的最大上线。例如：'com.xwaffle.universalmarket.addmax.3'允许玩家同时挂售三件商品
+    use-permissions-to-sell=false
+}
+```
+
+### 权限配置
+
+给与默认玩家组以下权限
+```
+com.xwaffle.universalmarket.open - 打开通用市场GUI
+com.xwaffle.universalmarket.add - 使用指令挂售手中道具
+```
+
+给与管理员组以下权限
+```
+com.xwaffle.universalmarket.remove - 移除玩家挂售的商品的权限
+```
+
+### 命令
+
+```
+/um - 打开UI界面
+/um a [价格] [可选的|数量] - 挂售手中道具
+```
+
+### 警告
+
+**如果玩家上架商品过期或被管理员移除，但玩家身上背包已满，商品将会消失！**
+
+---
+
+## [全息显示]Holograms
+
+[官网](https://ore.spongepowered.org/RandomByte/Holograms) | 
+[中文文档Holograms](http://www.mcbbs.net/thread-660959-1-1.html)| 
+[中文文档HologramsPlus](http://www.mcbbs.net/thread-847947-1-1.html)
+
+### 安装
+
+下载[Holograms](https://ore.spongepowered.org/RandomByte/Holograms/versions),[HologramsPlus](https://ore.spongepowered.org/happyzlife/HologramsPlus/versions)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\hologramsplus.conf 内刷新动态信息时间（秒）
+
+### 警告
+
+如果装有GP领地插件，使用管理员账号在游戏内输入以下命令，防止全息消失
+```
+/cf entity-spawn minecraft:armor_stand true
+/cf entity-chunk-spawn minecraft:armor_stand true
+```
+
+### 命令与权限
+
+给与管理员组 `holograms`、`hologramsplus` 权限
+
+指令|缩写|权限|用途
+-|-|-|-
+/holograms create <文字>|holograms.create|创建单行文字的全息
+/holograms createMultiLine <间距> <行数>|/holograms cml ...|holograms.createMultiLine|可以一次性创建多行全息 (推荐间距: 0.3).
+/holograms createMultiLine <间距> <文字>|/holograms cml ...|holograms.createMultiLine|可以一次性创建多行全息 （跟上一个有点不同，不用指定行数）这里每一行都可以使用 % 符号来表示，例如: /holograms cml 0.3 行1%行2%行3
+/holograms list [maxDistance]|holograms.list|列出距离你半径为10周围的全息图。
+/holograms|holograms.list|作用与 /holograms list 一样，但没有限制半径
+/hologramsplus select <enable/disable>|hologramsplus.command.select|启用一个全息的动态更新
+/hologramsplus refresh|hologramsplus.command.refresh|强制更新所有变量
+
+### 按钮权限与用途
+
+按钮|权限|用途
+-|-|-
+[TP]|holograms.teleport|将玩家传送到该全息
+[CP]|holograms.copy|将全息复制到玩家脚的位置上
+[MV]|holograms.move|将全息移动到玩家脚的位置上
+[ST]|holograms.setText|直接修改全息的文字，使用此功能前需要先点击[TP]让玩家传送过去才能使用[ST]功能
+[TFF]|holograms.setTextFromFile|导入配置文件 config/holograms/input.txt 文本中的文字替换到全息，仅支持单行，可使用颜色字符（不能为ANSI格式，否则乱码）
+[DEL]|holograms.delete|删除全息图
+
+---
+
+## [计分板]YYSScoreboard
+
+[官网](http://www.mcbbs.net/thread-837136-1-1.html) | 
+
+### 安装
+
+下载[最新版本](https://github.com/euOnmyoji/YYSScoreboard/releases)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\yysscoreboard\scoreboard.conf 内对应文字即可
+
+### 权限配置
+
+给与管理员组 `yysscoreboard` 权限，默认玩家组 `yysscoreboard.command.yyssb` 权限
+
+### 命令
+
+命令|备注
+-|-
+/yyssb reload |重载配置文件
+/yyssb on      |玩家个人打开计分板
+/yyssb off     |玩家个人关闭计分板
+/yyssb toggle |切换打开/关闭状态
+
+---
+
+## [箱子锁]Latch
+
+[官网](https://ore.spongepowered.org/IchorPowered/Latch) | 
+[中文文档](http://www.mcbbs.net/thread-786357-1-1.html)
+
+### 安装
+
+下载[最新版本](https://github.com/ichorpowered/latch/releases)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\latch\latch.conf 内对应文字即可
+
+### 权限配置
+
+给与管理员组 `latch.admin` 权限，默认玩家组 `latch.normal` 权限
+
+### 命令
+
+查件已汉化，输入`lock`查看所有可用命令
+
+---
+
+## [自动公告]PixelAutoMessage
+
+[官网](https://ore.spongepowered.org/FabioZumbi12/PixelAutoMessages) | 
+[中文文档](http://www.mcbbs.net/thread-784651-1-1.html)
+
+### 安装
+
+下载[最新版本](https://ore.spongepowered.org/FabioZumbi12/PixelAutoMessages/versions)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\pixelautomessages\pixelautomessages.conf 内对应文字即可
+
+### 权限配置
+
+给与管理员组 `pam.cmd.reload` 权限
+
+### 命令
+
+```
+/pam reload 重新加载配置文件
+```
+
+---
+
+## [扫地]SoulClear
+
+[官网](http://www.mcbbs.net/thread-849744-1-1.html) | 
+
+### 安装
+
+下载[最新版本](http://www.mcbbs.net/thread-849744-1-1.html)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\soulclear\config.yml 内对应文字即可
+
+### 权限配置
+
+给与管理员组 `soulclear` 权限,给与默认玩家权限组 `soulclear.repo` 回购权限
+
+### 命令
+
+```
+/soulClear clearHostile  立刻清理敌对生物
+/soulClear clearItem  立刻清理地上掉落物
+/soulClear repo  打开回购界面
+/soulClear reload  重载配置文件
+```
+
+---
+
+## [服务器列表]ServerListPlus
+
+[官网](https://ore.spongepowered.org/Minecrell/ServerListPlus) | 
+
+### 安装
+
+下载[最新版本](https://github.com/Minecrell/ServerListPlus/releases)放入Mod文件夹即可
+
+### 配置文件初始化
+
+修改\config\serverlistplus\ServerListPlus.yml 内对应文字即可
+
+### 命令
+
+```
+/slp reload 重新载入配置文件
+/slp enable 启用功能
+```
+
+---
+
+## [查询插件]Prism
+
+# 待整理
