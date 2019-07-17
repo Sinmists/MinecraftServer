@@ -1985,6 +1985,7 @@ flexiblelogin.bypass - 拥有此权限的玩家可以跳过登录
 ## [创世神]Worldedit
 
 [官网](http://enginehub.org/worldedit/) | 
+[中文文档](http://mineplugin.org/WorldEdit#.E5.AE.89.E8.A3.85)
 
 ### 安装
 
@@ -1996,7 +1997,120 @@ flexiblelogin.bypass - 拥有此权限的玩家可以跳过登录
 
 ### 命令
 
-# 待整理
+#### 历史
+命令|参数|介绍
+-|-|-
+//undo|[步数]|撤销你的上一个(或几个)操作
+//redo|[步数]|重做你上一个(或几个)被撤销的操作
+/clearhistory||清除你的历史记录
+
+#### 选区
+命令|参数|介绍
+-|-|-
+//wand||给予你编辑工具（默认为木斧）使用这个工具左键点击来选择第一个位置，右键点击来选择第二个位置
+/toggleeditwand||切换选择工具模式，使你可以正常使用作为选择工具的物品
+//sel|<cuboid\extend\poly\ellipsoid\sphere\cyl>|设置选区使用的形状
+//desel||清除当前的选区
+//pos1||将你站立的方块上方的方块的位置设置为第一个选区位置
+//pos2||将你站立的方块上方的方块的位置设置为第二个选区位置
+//hpos1||将你指针所指的方块的位置设置为第一个选区位置
+//hpos2||将你指针所指的方块的位置设置为第二个选区位置
+//expand|<数量>|向你所看的方向扩大选区范围
+//expand|<数量> <方向>|向指定方向扩大选区范围 (可用方向有 north,south,east,west,up,down)
+//expand|<数量> <反方向数量> [方向]|同时向两个方向扩大选区范围
+//expand|vert|将选区扩大到从天空到基岩
+//contract|<数量>|向你所看的方向缩小选区范围
+//contract|<数量> <方向>|向指定方向缩小选区范围 (可用方向有 north,south,east,west,up,down)
+//contract|<数量> <反方向数量> [方向]|同时向两个方向缩小选区范围
+//outset|[-hv] <数量>|向所有方向扩大选区范围
+//inset|[-hv] <数量>|向所有方向缩小选区范围
+//shift|<数量> [方向]|移动选区范围，不移动选区中的内容
+//size||得到当前选区的大小
+//count|<方块ID>|计算选区内指定方块的数量
+//distr|[-c]|计算选区内的方块分布比例
+
+#### 选区操作
+命令|参数|介绍
+-|-|-
+//set|<方块ID>|将选区内的所有方块设定为指定方块
+//replace|<到方块ID>|替换所有非空气方块为指定方块
+//replace|<从方块ID> <到方块ID>|将所有指定方块替换成另一个指定方块
+//overlay|<方块ID>|将指定方块放在选区内所有方块上方
+//walls|<方块ID>|用指定方块在选区四周建立墙壁（不包括屋顶与地面）
+//outline|<方块ID>|用指定方块在选区周围建立墙壁，屋顶与地面
+//smooth|[迭代次数]|平滑化选区的高度图
+//deform||按照几何表达式使选区内容变形
+//hollow||使选区内部的物体空心
+//regen||重新生成选择区域
+//move|[数量] [方向] [留存方块ID]|移动选区内容，可以指定一个方块来填充移动后留空的区域
+//stack|[数量] [方向]|叠加选区内容
+//naturalize||将选区表面3格设定为泥土，下面设定为原石
+
+#### 剪贴板
+命令|参数|介绍
+-|-|-
+//copy||复制当前选区内容，注意你与选区的相对位置将被储存
+//cut||剪切当前选区内容
+//paste|[-ao]|粘贴剪贴板内容。如果你使用-a标签，空气方块将会被忽略
+//rotate|<角度>|旋转剪贴板内容
+//flip|[方向]|翻转剪贴板内容
+//schematic 或 //schem|save [格式] <文件名>|将剪贴板内容保存为schematic文件（mcedit是目前唯一格式）
+//schematic 或 //schem|load [格式] <文件名>|将schematic文件加载到剪贴板
+//schematic 或 //schem|list|显示所有schematic文件列表
+//schematic 或 //schem|formats|显示所有可用的schematic格式
+/clearclipboard||清空你的剪贴板内容
+
+#### 生成
+命令|参数|介绍
+-|-|-
+//generate|<方块ID> <方程>|根据给出的方程生成形状
+//hcyl|<方块ID> <半径> [高度]|生成一个竖直的空心圆柱体
+//cyl|<方块ID> <半径> [高度]|生成一个竖直的实心圆柱体
+//sphere|<方块ID> <半径> [yes(是否生成在上方)]|生成一个球体
+//hsphere|<方块ID> <半径> [yes(是否生成在上方)]|生成一个空心球体
+//pyramid|<方块ID> <大小>|生成一座金字塔
+//hpyramid|<方块ID> <大小>|生成一座空心金字塔
+//forestgen|[大小] [种类] [密度]|生成一片森林
+//pumpkins|[大小]|生成一片南瓜地
+
+#### 效用性
+命令|参数|介绍
+-|-|-
+/toggleplace||在第一个选择点与你的位置之间切换
+//fill|<方块> <半径> [深度]|填充一个洞
+//fillr|<方块> <半径>|以递归模式填充完全一个洞
+//drain|<半径>|吸干附近的水或岩浆
+/fixwater|<半径>|平整附近的水面
+/fixlava|<半径>|平整附近的岩浆表面
+/removeabove|[大小] [高度]|移除你上方的方块
+/removebelow|[大小] [高度]|移除你下方的方块
+/replacenear|<大小> <从方块ID> <到方块ID>|替换附近的方块
+/removenear|[方块] [范围]|移除附近的方块
+/snow|[半径]|模拟降雪
+/thaw|[半径]|融化附近的积雪
+//ex|[范围]|扑灭附近的火焰
+/butcher|[半径]|杀死附近的生物
+/remove|<种类> <范围>|清除附近的实体，种类有"items"(物品)，"arrows"(箭)，"boats"(船)，"minecarts(矿车)"，"tnt"或"xp"(经验球)
+//green||绿化附近
+
+#### 普命令
+命令|参数|介绍
+-|-|-
+/searchitem||用名字搜索一个物品
+/worldedit||WorldEdit命令表
+/worldedit help|[命令]|显示给出的命令的介绍，或在没有给出命令时列出所有可用命令(同//help)
+//worldedit reload||重新载入WorldEdit配置文件
+//worldedit version||显示WorldEdit版本
+//worldedit tz||暂时性设置你的时区
+//fast||切换高速性能模式
+
+#### 生物群系
+命令|参数|介绍
+-|-|-
+/biome||显示你所在位置的生物群系
+/biomelist||显示所有可用的生物群系
+/biomeinfo|[-pt]|显示所指方块所在位置的生物群系
+//setbiome|[-p] <生物群系>|设置选区为指定生物群系 -p 参数设置你所在位置的生物群系
 
 ---
 
@@ -2296,6 +2410,87 @@ com.xwaffle.universalmarket.remove - 移除玩家挂售的商品的权限
 
 ---
 
-## [查询插件]Prism
+## [多世界管理]ProjectWorlds
 
-# 待整理
+[官网](https://ore.spongepowered.org/TrenTech/ProjectWorlds) | 
+
+### 安装
+
+下载[前置](https://ore.spongepowered.org/TrenTech/ProjectCore/versions)、[最新版本](https://ore.spongepowered.org/TrenTech/ProjectWorlds/versions)放入Mod文件夹即可
+
+### 权限配置
+
+给与管理员组 `pjw` 权限
+
+```
+pjw.cmd.world.properties
+pjw.cmd.world.list
+pjw.cmd.world.hardcore
+pjw.cmd.world.keepspawnloaded
+pjw.cmd.world.setspawn
+pjw.cmd.world.difficulty
+pjw.cmd.world.regen
+pjw.cmd.world.fill
+pjw.cmd.world.delete
+pjw.cmd.world.create
+pjw.cmd.world.teleport
+pjw.cmd.world.teleport.others
+pjw.cmd.world.gamerule
+pjw.cmd.world.rename
+pjw.cmd.world.load
+pjw.cmd.world.import
+pjw.cmd.world.unload
+pjw.cmd.world.time
+pjw.cmd.world.world
+pjw.cmd.world.loadonstartup
+pjw.cmd.world.modifier
+pjw.cmd.world.usemapfeatures
+pjw.cmd.world.border
+pjw.cmd.world.border.center
+pjw.cmd.world.border.damage
+pjw.cmd.world.border.diameter
+pjw.cmd.world.border.generate
+pjw.cmd.world.border.warning
+pjw.cmd.world.border.info
+pjw.worlds.<world> - Grant permission to enter world
+pjw.override.gamemode - override forced gamemode settings when switching worlds
+pjw.override.pvp - override forced pvp settings in worlds
+```
+
+### 命令
+
+使用`/helpme <command>`获取命令帮助
+
+```
+/world（指令大全）
+/world properties（世界属性）
+/world create（创造世界，支持创造超平坦）
+/world remove（删除世界）
+/world regen（重新生成一个世界）
+/world difficulty（调整世界的难度）
+/world setspawn（设置世界的出生点）
+/world keepspawnloaded（保持出生点的区块读取）
+/world hardcore（启用hardcore模式？）
+/world list（查看世界列表）
+/world teleport（传送到那个世界）
+/world gamerule（设置世界的游戏规则）
+/world unload（取消读取某个世界）
+/world load（加载某个世界）
+/world import（导入一个世界）
+/world rename（更改某个世界的名称）
+/world copy（复制某个世界）
+/world time（设置世界时间）
+/world weather（设置世界气象）
+/world loadonstartup（设置世界是否在启动时加载）
+/world usemapfeatures（设置世界是否生成村庄等地图特性建筑）
+/world modifier （允许添加或删除世界特性，仅生效在未生成的区块）
+/world border（地图边界设置，包括中心、伤害、直径、生成、警告、基本信息）
+    /world border center
+    /world border damage
+    /world border diameter
+    /world border generate
+    /world border warning
+    /world border info
+```
+
+---
