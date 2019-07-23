@@ -1151,21 +1151,21 @@ module-loan-yes="&a贷款成功!"
 
 - playerdata
 
-`claim-block-system=VOLUME` 领地方块计数默认3D模式
+`claim-block-system=AREA` 领地方块计数默认2D模式
 
 ### 选项初始化
 
-`lp group default meta set griefprevention.blocks-accrued-per-hour 60` 每小时在线赚取的领地块数量,50小时累积到20长10宽15高=3000，即每小时60块
+`lp group default meta set griefprevention.blocks-accrued-per-hour 30` 每小时在线赚取的领地块数量,10小时累积到20长15宽
 
-`lp group default meta set griefprevention.claim-create-mode 1` 玩家默认登录圈地方式为3D模式
+`lp group default meta set griefprevention.claim-create-mode 0` 玩家默认登录圈地方式为2D模式
 
-`lp group default meta set griefprevention.create-claim-limit-basic 2` 每个玩家最大基础领地为2个
+`lp group default meta set griefprevention.create-claim-limit-basic 1` 每个玩家最大基础领地为1个
 
-`lp group default meta set griefprevention.initial-claim-blocks 100` 玩家初始领地方块数量为100块
+`lp group default meta set griefprevention.initial-claim-blocks 0` 玩家初始领地方块数量为0块
 
-`lp group default meta set griefprevention.max-accrued-claim-blocks 3000` 通过在线时长累积的最多领地方块数量为3000块
+`lp group default meta set griefprevention.max-accrued-claim-blocks 300` 通过在线时长累积的最多领地方块数量为200块
 
-`lp group default meta set griefprevention.claim-expiration-basic 31` 超过31天不上线的玩家基本领地将被删除
+`lp group default meta set griefprevention.claim-expiration-basic 90` 超过90天不上线的玩家基本领地将被删除
 
 设置完成后使用 `gpreload` 激活配置
 
@@ -1320,7 +1320,7 @@ griefprevention.user.claim.command.trust.remove|允许取消信任玩家
 给予指定玩家一本认领指南。（译者注：YouTube外链，慎用）
 
 /claimfarewell <"message">
-设置你所在领地的道别语（当玩家进入领地时的提示语）。
+设置你所在领地的道别语（当玩家离开领地时的提示语）。
 
 删除道别语请使用 ：/claimfarewell ""
 
@@ -1489,7 +1489,7 @@ griefprevention.user.claim.command.trust.remove|允许取消信任玩家
 /setaccruedclaimblocks <player> <amount> [<world>]
 别名: scb
 
-设置指定玩家的领地块认领上限（慎用）。
+设置指定玩家的领地块认领上限（区分bonus与accrued领地块区别，可用playerinfo查看）。
 
 /adminclaims
 别名: ac
@@ -2165,7 +2165,7 @@ virtualchest.open.self.example|为自己打开名为 example 菜单的权限
 
 ### 命令
 
-# 待整理
+`/vc reload`  重新加载配置文件
 
 ---
 
@@ -2333,7 +2333,7 @@ com.xwaffle.universalmarket.remove - 移除玩家挂售的商品的权限
 
 ### 命令
 
-查件已汉化，输入`lock`查看所有可用命令
+插件已汉化，输入`lock`查看所有可用命令
 
 ---
 
@@ -2494,3 +2494,11 @@ pjw.override.pvp - override forced pvp settings in worlds
 ```
 
 ---
+
+# 箱子菜单设计
+
+##主菜单
+1|2|3|4|5|6|7
+-|-|-|-|-|-|-
+个人信息菜单|基础指令|家菜单|世界市场菜单|领地菜单|箱子锁菜单|世界传送菜单
+
