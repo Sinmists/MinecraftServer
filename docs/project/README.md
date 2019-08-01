@@ -1,4 +1,7 @@
-# Minecraft Server Plugins
+---
+layout: post
+title: Minecraft Server Plugins
+---
 
 **这是什么文档？**
 

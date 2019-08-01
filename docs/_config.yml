@@ -61,8 +61,8 @@ menu:
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             © 2019. All rights reserved. Open `_config.yml` to edit this text.
 
-# Format of the permalinks
-permalink:             /:categories/:year-:month-:day-:title/
+# Format of the permalinks /:categories/:year-:month-:day-:title/
+permalink:             
 
 # Pagination configuration (used by the `blog` layout)
 paginate:              5
