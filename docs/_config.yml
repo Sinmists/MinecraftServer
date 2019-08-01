@@ -48,7 +48,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             计划内容
-    url:               /project/
+    url:               /project/123.md
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
