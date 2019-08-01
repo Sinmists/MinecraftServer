@@ -35,8 +35,8 @@ keywords:              []
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
-# It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/icons/icon.png
+# It also used by the `jekyll-seo-tag` plugin./assets/icons/icon.png
+logo:                  
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -48,7 +48,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             计划内容
-    url:               /project/readme.md
+    url:               /project/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
