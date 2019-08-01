@@ -49,7 +49,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             计划
-    url:               /pages/插件.md
+    url:               /pages/
   - title:             Example
     url:               /example/
   - title:             Documentation
