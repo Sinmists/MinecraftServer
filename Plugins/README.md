@@ -1,7 +1,3 @@
----
-layout: page
-title:  Minecraft Server Plugins
----
 # Minecraft Server Plugins
 
 **这是什么文档？**
