@@ -29,9 +29,6 @@
 
 /help
 sponge.command.help 让玩家查看可用命令列表
-
-/ping
-nucleus.ping.base
 ```
 
 ---
